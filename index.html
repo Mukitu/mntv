@@ -241,6 +241,7 @@ body::after{content:'';position:fixed;inset:0;
   <footer class="footer">
     <strong>MN TV</strong> — Watch Free Live TV Online<br>
     <span style="font-size:10px;margin-top:6px;display:block;opacity:.7">© 2026 MN TV. All rights reserved.</span>
+    <span style="font-size:10px;margin-top:4px;display:block;opacity:.5;letter-spacing:1px">Made by <strong style="color:var(--accent2);font-family:'Syne',sans-serif;letter-spacing:2px">Nishat</strong></span>
   </footer>
 </main>
 
@@ -584,9 +585,8 @@ function streamFailed(){
   setTimeout(()=>{ $('p-err').style.display='none'; }, 4000);
 }
 
-let _adShown = false;
 window.playCh=function(idx){
-  if(!_adShown){ _adShown=true; window.open('https://omg10.com/4/11073224','_blank'); }
+  window.open('https://omg10.com/4/11073224','_blank');
   curIdx=idx;
   const ch=CHANNELS[idx];
   const saved = parseInt(localStorage.getItem('mntv_srv_'+idx)||'0',10);
