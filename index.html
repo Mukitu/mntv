@@ -413,6 +413,7 @@ function showLoad(name){
 function hideLoad(){ $('p-load').classList.add('off'); }
 
 function destroyPlayer(){
+  stopStallWatchdog();
   if(hls){ hls.destroy(); hls=null; }
   if(mpegtsPlayer){ mpegtsPlayer.destroy(); mpegtsPlayer=null; }
   video.pause(); video.removeAttribute('src'); video.load();
@@ -425,6 +426,7 @@ function onStreamPlaying(){
   hideLoad();
   video.classList.add('playing');
   video.style.display='block';
+  startStallWatchdog();
 }
 
 function armLoadTimeout(){
@@ -435,7 +437,29 @@ function armLoadTimeout(){
   }, 14000);
 }
 
+// ── stall watchdog ──────────────────────────────────────
+let _stallTimer = null, _lastTime = -1, _stallCount = 0;
+function startStallWatchdog(){
+  clearInterval(_stallTimer);
+  _lastTime = -1; _stallCount = 0;
+  _stallTimer = setInterval(() => {
+    if(curIdx < 0 || !video.classList.contains('playing')) return;
+    const t = video.currentTime;
+    if(t === _lastTime && !video.paused && !video.ended){
+      _stallCount++;
+      if(_stallCount >= 2){
+        // try resume first
+        const p = video.play(); if(p) p.catch(()=>{});
+        if(_stallCount >= 4){ clearInterval(_stallTimer); failover(); }
+      }
+    } else { _stallCount = 0; }
+    _lastTime = t;
+  }, 3000);
+}
+function stopStallWatchdog(){ clearInterval(_stallTimer); _stallTimer = null; }
+
 function startStream(rawUrl){
+  stopStallWatchdog();
   if(hls){ hls.destroy(); hls=null; }
   if(mpegtsPlayer){ mpegtsPlayer.destroy(); mpegtsPlayer=null; }
   video.pause(); video.removeAttribute('src'); video.load();
@@ -469,39 +493,57 @@ function startStream(rawUrl){
     }, {
       enableWorker: true,
       enableStashBuffer: true,
-      stashInitialSize: 256,
+      stashInitialSize: 192,
       lazyLoad: false,
       autoCleanupSourceBuffer: true,
-      autoCleanupMaxBackwardDuration: 10,
-      autoCleanupMinBackwardDuration: 5,
+      autoCleanupMaxBackwardDuration: 8,
+      autoCleanupMinBackwardDuration: 4,
       liveBufferLatencyChasing: true,
-      liveBufferLatencyMaxLatency: 4.0,
-      liveBufferLatencyMinRemain: 0.5,
+      liveBufferLatencyMaxLatency: 3.0,
+      liveBufferLatencyMinRemain: 0.3,
+      seekType: 'range',
     });
     mpegtsPlayer.attachMediaElement(video);
     mpegtsPlayer.load();
     video.muted = false;
     const mp = mpegtsPlayer.play();
     if(mp) mp.catch(() => {});
-    mpegtsPlayer.on(mpegts.Events.ERROR, () => failover());
+    mpegtsPlayer.on(mpegts.Events.ERROR, (et, ed) => {
+      if(ed && ed.details && ed.details.type === 'NetworkError') return; // retry internally
+      failover();
+    });
     return;
   }
 
   if(typeof Hls !== 'undefined' && Hls.isSupported() && !isTS){
     hls = new Hls({
       enableWorker: true,
-      maxBufferLength: 15,
-      maxMaxBufferLength: 30,
+      // buffer — small enough for low network, big enough to not re-stall
+      maxBufferLength: 8,
+      maxMaxBufferLength: 20,
+      maxBufferSize: 20 * 1000 * 1000,  // 20MB cap
+      maxBufferHole: 0.5,
+      // live sync — stay close to live edge
       liveSyncDurationCount: 2,
-      liveMaxLatencyDurationCount: 5,
-      fragLoadingMaxRetry: 4,
-      manifestLoadingMaxRetry: 4,
-      levelLoadingMaxRetry: 4,
-      fragLoadingRetryDelay: 1000,
-      lowLatencyMode: false,
+      liveMaxLatencyDurationCount: 4,
+      liveDurationInfinity: true,
+      // ABR — start at lowest quality, ramp up fast
       startLevel: 0,
-      abrEwmaFastLive: 3,
-      abrEwmaSlowLive: 9,
+      autoStartLoad: true,
+      abrEwmaFastLive: 2,
+      abrEwmaSlowLive: 6,
+      abrBandWidthFactor: 0.85,
+      abrBandWidthUpFactor: 0.65,
+      // retries — be patient on bad network
+      fragLoadingMaxRetry: 6,
+      fragLoadingRetryDelay: 800,
+      fragLoadingMaxRetryTimeout: 8000,
+      manifestLoadingMaxRetry: 5,
+      manifestLoadingRetryDelay: 1000,
+      levelLoadingMaxRetry: 5,
+      levelLoadingRetryDelay: 1000,
+      lowLatencyMode: false,
+      progressive: true,
     });
     hls.loadSource(url);
     hls.attachMedia(video);
@@ -510,9 +552,18 @@ function startStream(rawUrl){
       const p = video.play();
       if(p) p.catch(() => failover());
     });
+    let _mediaRecovered = false;
     hls.on(Hls.Events.ERROR, (ev, data) => {
-      if(!data.fatal) return;
-      if(data.type === Hls.ErrorTypes.MEDIA_ERROR && hls){
+      if(!data.fatal){
+        // non-fatal buffer hole — nudge playback
+        if(data.details === Hls.ErrorDetails.BUFFER_STALLED_ERROR ||
+           data.details === Hls.ErrorDetails.BUFFER_SEEK_OVER_HOLE){
+          try{ video.currentTime += 0.1; }catch(e){}
+        }
+        return;
+      }
+      if(data.type === Hls.ErrorTypes.MEDIA_ERROR && hls && !_mediaRecovered){
+        _mediaRecovered = true;
         hls.recoverMediaError();
         return;
       }
@@ -521,15 +572,8 @@ function startStream(rawUrl){
     return;
   }
 
-  if(nativeHls && !isTS){
-    playNative();
-    return;
-  }
-
-  if(!isTS){
-    playNative();
-    return;
-  }
+  if(nativeHls && !isTS){ playNative(); return; }
+  if(!isTS){ playNative(); return; }
   streamFailed();
 }
 
@@ -540,8 +584,9 @@ function streamFailed(){
   setTimeout(()=>{ $('p-err').style.display='none'; }, 4000);
 }
 
+let _adShown = false;
 window.playCh=function(idx){
-  window.open('https://omg10.com/4/11073224','_blank');
+  if(!_adShown){ _adShown=true; window.open('https://omg10.com/4/11073224','_blank'); }
   curIdx=idx;
   const ch=CHANNELS[idx];
   const saved = parseInt(localStorage.getItem('mntv_srv_'+idx)||'0',10);
