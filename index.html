@@ -174,7 +174,8 @@ body::after{content:'';position:fixed;inset:0;
 #p-servers::-webkit-scrollbar{display:none}
 .srv-btn{flex-shrink:0;background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.15);color:#fff;padding:6px 14px;border-radius:20px;cursor:pointer;font-size:11px;font-weight:600;font-family:inherit;transition:.15s;white-space:nowrap}
 .srv-btn:hover,.srv-btn.on{background:var(--accent);border-color:var(--accent);box-shadow:0 0 12px var(--glow)}
-#p-fs"><svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M8 3H5a2 2 0 0 0-2 2v3m18 0V5a2 2 0 0 0-2-2h-3m0 18h3a2 2 0 0 0 2-2v-3M3 16v3a2 2 0 0 0 2 2h3"/></svg></button>
+#p-fs{width:42px;height:42px;border-radius:50%;background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.12);color:#fff;cursor:pointer;display:flex;align-items:center;justify-content:center;backdrop-filter:blur(8px);flex-shrink:0;transition:.2s}
+#p-fs:hover{background:var(--accent);border-color:var(--accent)}
 #p-bottom{position:absolute;bottom:0;left:0;right:0;z-index:10;padding:20px;display:flex;justify-content:center;gap:14px;background:linear-gradient(0deg,rgba(0,0,0,.7) 0%,rgba(0,0,0,.3) 50%,transparent 100%);opacity:0;transition:opacity .3s;pointer-events:none}
 #player.show-ui #p-bottom,#player:hover #p-bottom{opacity:1;pointer-events:all}
 .ctrl{width:52px;height:52px;border-radius:50%;background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.12);color:#fff;cursor:pointer;display:flex;align-items:center;justify-content:center;backdrop-filter:blur(8px);transition:.2s}
@@ -916,8 +917,8 @@ const CHANNELS = [
   }
 ];
 
-// FEATURED CHANNELS (এখানে আপনার সিরিয়াল সেট করা হয়েছে)
-const FEATURED_IDS = [1, 31, 5, 39, 38]; // FIFA, SOMOY, T Sports, JAMUNA, EKATTOR
+// FEATURED CHANNELS
+const FEATURED_IDS = [1, 31, 5, 39, 38];
 
 const CAT_NAMES = {
   "sports": "স্পোর্টস",
@@ -971,313 +972,289 @@ window.addEventListener("DOMContentLoaded", () => {
   initEvents();
 });
 
-function initEvents() {
-  // Category Switch
-  catBar.addEventListener("click", (e) => {
-    const btn = e.target.closest(".cat-btn");
-    if (!btn) return;
-    document.querySelectorAll(".cat-btn").forEach(b => b.classList.remove("active"));
-    btn.classList.add("active");
-    activeCat = btn.dataset.cat;
-    
-    if (activeCat !== "all") {
-      searchInp.value = "";
-      searchResDiv.classList.add("hidden");
-      sectionsDiv.classList.remove("hidden");
-    }
-    renderLayout();
-  });
-
-  // Search Action
-  searchInp.addEventListener("input", (e) => {
-    const q = e.target.value.toLowerCase().trim();
-    if (!q) {
-      searchResDiv.classList.add("hidden");
-      sectionsDiv.classList.remove("hidden");
-      return;
-    }
-    
-    document.querySelectorAll(".cat-btn").forEach(b => b.classList.remove("active"));
-    document.querySelector('[data-cat="all"]').classList.add("active");
-    activeCat = "all";
-
-    const matches = CHANNELS.filter(c => c.name.toLowerCase().includes(q));
-    renderSearchResults(matches);
-  });
-
-  // Refresh
-  btnRefresh.addEventListener("click", () => {
-    showToast("চ্যানেল লিস্ট রিফ্রেশ করা হয়েছে 🔄");
-    renderLayout();
-  });
-
-  // Player Events
-  pBack.addEventListener("click", closePlayer);
-  pReload.addEventListener("click", () => playChannel(currentChIdx, currentSrvIdx));
-  pPrev.addEventListener("click", () => switchChannel(-1));
-  pNext.addEventListener("click", () => switchChannel(1));
-  pFs.addEventListener("click", toggleFullscreen);
-
-  // Auto Hide Player Controls
-  pWrap.addEventListener("mousemove", triggerUiView);
-  pWrap.addEventListener("touchstart", triggerUiView);
-}
-
-function showToast(msg) {
-  toast.innerText = msg;
-  toast.classList.add("show");
-  setTimeout(() => toast.classList.remove("show"), 2500);
-}
-
+// RENDER APP INTERFACE
 function renderLayout() {
   sectionsDiv.innerHTML = "";
   
   if (activeCat === "all") {
-    // Render Featured Top
-    const featChs = FEATURED_IDS.map(id => CHANNELS.find(c => c.id === id)).filter(Boolean);
-    if (featChs.length > 0) {
-      const secHdr = document.createElement("div");
-      secHdr.className = "featured-hdr";
-      secHdr.innerHTML = `<h2 class="section-title">ফিচার্ড চ্যানেল <span class="ch-count">${featChs.length}</span></h2>`;
-      sectionsDiv.appendChild(secHdr);
-
-      const fGrid = document.createElement("div");
-      fGrid.className = "featured-section";
-      const fGridInner = document.createElement("div");
-      fGridInner.className = "featured-grid";
-
-      featChs.forEach(ch => {
-        const idx = CHANNELS.findIndex(c => c.id === ch.id);
-        const card = document.createElement("div");
-        card.className = "feat-card";
-        card.innerHTML = `
-          <div class="feat-logo-wrap">
-            <img class="feat-logo" src="${ch.logo}" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';" alt="${ch.name}">
-            <div class="feat-ph">${ch.name.substring(0,2).toUpperCase()}</div>
-          </div>
-          <div class="feat-info">
-            <div>
-              <div class="feat-name">${ch.name}</div>
-              <div class="feat-srv"><span class="srv-dot"></span>${ch.servers.length} সার্ভার অনলাইন</div>
-            </div>
-            <div class="feat-badge">LIVE</div>
-          </div>
-        `;
-        card.addEventListener("click", () => playChannel(idx, 0));
-        fGridInner.appendChild(card);
-      });
-      fGrid.appendChild(fGridInner);
-      sectionsDiv.appendChild(fGrid);
-      
-      const div = document.createElement("div");
-      div.className = "sec-divider";
-      sectionsDiv.appendChild(div);
-    }
-
-    // Render Categorized Segments
-    Object.keys(CAT_NAMES).forEach(cat => {
-      const catChs = CHANNELS.filter(c => c.category === cat);
-      if (catChs.length > 0) {
-        renderSection(CAT_NAMES[cat], catChs);
-      }
+    // Render Featured Channels
+    const featSection = document.createElement("div");
+    featSection.className = "featured-section";
+    
+    const featFeaturedHdr = document.createElement("div");
+    featFeaturedHdr.className = "featured-hdr";
+    
+    const featTitle = document.createElement("div");
+    featTitle.className = "section-title";
+    featTitle.innerHTML = `সেরা স্ট্রিম <span class="ch-count">${FEATURED_IDS.length}</span>`;
+    featFeaturedHdr.appendChild(featTitle);
+    featSection.appendChild(featFeaturedHdr);
+    
+    const featGrid = document.createElement("div");
+    featGrid.className = "featured-grid";
+    
+    FEATURED_IDS.forEach(id => {
+      const ch = CHANNELS.find(c => c.id === id);
+      if (ch) featGrid.appendChild(createChannelCard(ch, true));
     });
+    
+    featSection.appendChild(featGrid);
+    sectionsDiv.appendChild(featSection);
+    
+    const div = document.createElement("div");
+    div.className = "sec-divider";
+    sectionsDiv.appendChild(div);
+
+    // Group rest of channels by Category
+    const groups = {};
+    CHANNELS.forEach(ch => {
+      if (!groups[ch.category]) groups[ch.category] = [];
+      groups[ch.category].push(ch);
+    });
+
+    for (const cat in groups) {
+      renderCategorySection(cat, groups[cat]);
+    }
   } else {
-    const catChs = CHANNELS.filter(c => c.category === activeCat);
-    renderSection(CAT_NAMES[activeCat], catChs);
+    const list = CHANNELS.filter(ch => ch.category === activeCat);
+    renderCategorySection(activeCat, list);
   }
 }
 
-function renderSection(title, list) {
-  const hdr = document.createElement("h2");
-  hdr.className = "section-title";
-  hdr.innerHTML = `${title} <span class="ch-count">${list.length}</span>`;
-  sectionsDiv.appendChild(hdr);
-
+function renderCategorySection(catKey, list) {
+  if (!list.length) return;
+  const sect = document.createElement("div");
+  
+  const title = document.createElement("div");
+  title.className = "section-title";
+  title.innerHTML = `${CAT_NAMES[catKey] || catKey} <span class="ch-count">${list.length}</span>`;
+  sect.appendChild(title);
+  
   const grid = document.createElement("div");
   grid.className = "grid";
-
-  list.forEach(ch => {
-    const origIdx = CHANNELS.findIndex(c => c.id === ch.id);
-    const card = document.createElement("div");
-    card.className = "ch-card";
-    card.innerHTML = `
-      <img class="ch-logo" src="${ch.logo}" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';" alt="${ch.name}">
-      <div class="ch-ph">${ch.name.substring(0,2).toUpperCase()}</div>
-      <div class="ch-name">${ch.name}</div>
-      <div class="ch-meta"><span class="srv-dot"></span>${ch.servers.length} সার্ভার</div>
-    `;
-    card.addEventListener("click", () => playChannel(origIdx, 0));
-    grid.appendChild(card);
-  });
-
-  sectionsDiv.appendChild(grid);
+  list.forEach(ch => grid.appendChild(createChannelCard(ch, false)));
+  
+  sect.appendChild(grid);
+  sectionsDiv.appendChild(sect);
 }
 
-function renderSearchResults(results) {
-  sectionsDiv.classObj = "hidden";
-  sectionsDiv.classList.add("hidden");
-  searchResDiv.classList.remove("hidden");
-  searchResDiv.innerHTML = "";
-
-  if (results.length === 0) {
-    searchResDiv.innerHTML = `
-      <div class="noresult">
-        <svg fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-5.197-5.197m0 0A7.5 7.5 0 105.196 5.196a7.5 7.5 0 0010.604 10.604z"/></svg>
-        <p>দুঃখিত, কোনো চ্যানেল পাওয়া যায়নি!</p>
-      </div>`;
-    return;
+function createChannelCard(ch, isFeatured = false) {
+  const card = document.createElement("div");
+  
+  if (isFeatured) {
+    card.className = "feat-card";
+    card.innerHTML = `
+      <div class="feat-logo-wrap">
+        <img class="feat-logo" src="${ch.logo}" alt="${ch.name}" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+        <div class="feat-ph">${ch.name.substring(0,2)}</div>
+      </div>
+      <div class="feat-info">
+        <div>
+          <div class="feat-name">${ch.name}</div>
+          <div class="feat-srv">⚡ সার্ভার: ${ch.servers.length}টি</div>
+        </div>
+        <span class="feat-badge">LIVE</span>
+      </div>
+    `;
+  } else {
+    card.className = "ch-card";
+    card.innerHTML = `
+      <img class="ch-logo" src="${ch.logo}" alt="${ch.name}" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+      <div class="ch-ph">${ch.name.substring(0,2)}</div>
+      <div class="ch-name">${ch.name}</div>
+      <div class="ch-meta"><span class="srv-dot"></span>${ch.servers.length} Servers</div>
+    `;
   }
 
-  const hdr = document.createElement("h2");
-  hdr.className = "section-title";
-  hdr.innerHTML = `খোঁজার ফলাফল <span class="ch-count">${results.length}</span>`;
-  searchResDiv.appendChild(hdr);
-
-  const grid = document.createElement("div");
-  grid.className = "grid";
-
-  results.forEach(ch => {
-    const origIdx = CHANNELS.findIndex(c => c.id === ch.id);
-    const card = document.createElement("div");
-    card.className = "ch-card";
-    card.innerHTML = `
-      <img class="ch-logo" src="${ch.logo}" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';" alt="${ch.name}">
-      <div class="ch-ph">${ch.name.substring(0,2).toUpperCase()}</div>
-      <div class="ch-name">${ch.name}</div>
-      <div class="ch-meta"><span class="srv-dot"></span>${ch.servers.length} সার্ভার</div>
-    `;
-    card.addEventListener("click", () => playChannel(origIdx, 0));
-    grid.appendChild(card);
+  card.addEventListener("click", () => {
+    const globalIdx = CHANNELS.findIndex(c => c.id === ch.id);
+    playChannel(globalIdx, 0);
   });
-  searchResDiv.appendChild(grid);
+  return card;
 }
 
-// PLAYER ENGINE
-function playChannel(chIdx, srvIdx) {
-  destroyPlayers();
+// VIDEO PLAYER ENGINE
+function playChannel(chIdx, srvIdx = 0) {
+  if (chIdx < 0 || chIdx >= CHANNELS.length) return;
   
   currentChIdx = chIdx;
   currentSrvIdx = srvIdx;
   const ch = CHANNELS[chIdx];
-  const srv = ch.servers[srvIdx];
+  const server = ch.servers[srvIdx];
+  
+  if (!server) return;
 
+  destroyPlayer();
+  
   pWrap.classList.add("on");
-  video.classList.remove("playing");
   pLoad.classList.remove("off");
   pErr.style.display = "none";
+  video.classList.remove("playing");
   
-  pLoadName.innerText = `প্লে হচ্ছে: ${ch.name}`;
-  pName.innerText = ch.name;
+  pLoadName.textContent = `Loading ${ch.name}...`;
+  pName.textContent = ch.name;
   pLogo.src = ch.logo;
-  pLogo.onerror = () => pLogo.style.display='none';
+  pLogo.onerror = () => pLogo.style.display = 'none';
+  
+  renderServerButtons(ch);
+  triggerUi();
 
-  // Render Servers
-  pServers.innerHTML = "";
-  ch.servers.forEach((s, idx) => {
-    const btn = document.createElement("button");
-    btn.className = `srv-btn ${idx === srvIdx ? 'on' : ''}`;
-    btn.innerText = s.label;
-    btn.addEventListener("click", (e) => {
-      e.stopPropagation();
-      playChannel(chIdx, idx);
-    });
-    pServers.appendChild(btn);
-  });
+  const streamUrl = server.url;
 
-  triggerUiView();
-
-  const url = srv.url.split('?')[0];
-  const isM3u8 = url.endsWith('.m3u8') || srv.url.includes('playlist.m3u8');
-  const isFlv = url.endsWith('.flv') || url.endsWith('.ts');
-
-  if (isM3u8) {
-    if (video.canPlayType('application/vnd.apple.mpegurl')) {
-      video.src = srv.url;
-      video.addEventListener('loadedmetadata', handlePlaySuccess);
-      video.addEventListener('error', handlePlayError);
-    } else if (Hls.isSupported()) {
+  if (streamUrl.includes(".m3u8")) {
+    if (Hls.isSupported()) {
       hls = new Hls({ maxMaxBufferLength: 10, liveSyncDurationCount: 3 });
-      hls.loadSource(srv.url);
+      hls.loadSource(streamUrl);
       hls.attachMedia(video);
-      hls.on(Hls.Events.MANIFEST_PARSED, handlePlaySuccess);
+      hls.on(Hls.Events.MANIFEST_PARSED, () => video.play().catch(handlePlayError));
       hls.on(Hls.Events.ERROR, (event, data) => {
-        if (data.fatal) handlePlayError();
+        if (data.fatal) handleStreamError();
       });
+    } else if (video.canPlayType("application/vnd.apple.mpegurl")) {
+      video.src = streamUrl;
+      video.addEventListener("loadedmetadata", () => video.play().catch(handlePlayError));
     } else {
-      fallbackPlay();
+      handleStreamError();
     }
-  } else if (isFlv || mpegts.getFeatureList().mseFlvPlayback) {
-    flvPlayer = mpegts.createPlayer({ type: 'mse', url: srv.url, isLive: true });
-    flvPlayer.attachMedia(video);
-    flvPlayer.load();
-    handlePlaySuccess();
-  } else {
-    fallbackPlay();
+  } else if (streamUrl.includes(".flv") || streamUrl.includes(".ts")) {
+    if (mpegts.getFeatureList().mseFlvPlayback) {
+      flvPlayer = mpegts.createPlayer({ type: streamUrl.includes(".ts") ? 'mpegts' : 'flv', url: streamUrl, isLive: true });
+      flvPlayer.attachMedia(video);
+      flvPlayer.load();
+      flvPlayer.play().catch(handlePlayError);
+    } else {
+      handleStreamError();
+    }
   }
-}
 
-function handlePlaySuccess() {
-  pLoad.classList.add("off");
-  video.classList.add("playing");
-  video.play().catch(() => {
-    video.muted = true;
-    video.play();
-    showToast("সাউন্ড অন করতে স্ক্রিনে ট্যাপ করুন 🔊");
-  });
+  video.onplaying = () => {
+    pLoad.classList.add("off");
+    video.classList.add("playing");
+  };
+
+  video.onerror = () => handleStreamError();
 }
 
 function handlePlayError() {
-  destroyPlayers();
+  pLoad.classList.add("off");
+  showToast("Playback Blocked. Tap screen to play.");
+}
+
+function handleStreamError() {
   pErr.style.display = "block";
-  
-  // Auto switch server if failure occurs
-  const nextSrv = currentSrvIdx + 1;
-  if (nextSrv < CHANNELS[currentChIdx].servers.length) {
-    setTimeout(() => playChannel(currentChIdx, nextSrv), 2000);
+  const ch = CHANNELS[currentChIdx];
+  if (currentSrvIdx + 1 < ch.servers.length) {
+    setTimeout(() => playChannel(currentChIdx, currentSrvIdx + 1), 2000);
   } else {
     pLoad.classList.add("off");
-    showToast("এই চ্যানেলের সব সার্ভার ডাউন আছে ❌");
+    showToast("All servers failed for this channel.");
   }
 }
 
-function fallbackPlay() {
-  video.src = CHANNELS[currentChIdx].servers[currentSrvIdx].url;
-  handlePlaySuccess();
+function renderServerButtons(ch) {
+  pServers.innerHTML = "";
+  ch.servers.forEach((srv, i) => {
+    const btn = document.createElement("button");
+    btn.className = `srv-btn ${i === currentSrvIdx ? 'on' : ''}`;
+    btn.textContent = srv.label || `Server ${i+1}`;
+    btn.onclick = (e) => {
+      e.stopPropagation();
+      playChannel(currentChIdx, i);
+    };
+    pServers.appendChild(btn);
+  });
 }
 
-function switchChannel(dir) {
-  let nIdx = currentChIdx + dir;
-  if (nIdx >= CHANNELS.length) nIdx = 0;
-  if (nIdx < 0) nIdx = CHANNELS.length - 1;
-  playChannel(nIdx, 0);
-}
-
-function closePlayer() {
-  destroyPlayers();
-  pWrap.classList.remove("on");
-}
-
-function destroyPlayers() {
+function destroyPlayer() {
   video.pause();
   video.src = "";
   if (hls) { hls.destroy(); hls = null; }
   if (flvPlayer) { flvPlayer.destroy(); flvPlayer = null; }
 }
 
-function toggleFullscreen() {
-  if (!document.fullscreenElement) {
-    pWrap.requestFullscreen().catch(() => {});
-  } else {
-    document.exitFullscreen();
-  }
-}
-
-function triggerUiView() {
+function triggerUi() {
   pWrap.classList.add("show-ui");
   clearTimeout(uiTimeout);
-  uiTimeout = setTimeout(() => {
-    pWrap.classList.remove("show-ui");
-  }, 3500);
+  uiTimeout = setTimeout(() => pWrap.classList.remove("show-ui"), 3500);
+}
+
+// EVENTS HANDLING
+function initEvents() {
+  // Category Tabs
+  catBar.addEventListener("click", (e) => {
+    const btn = e.target.closest(".cat-btn");
+    if (!btn) return;
+    document.querySelectorAll(".cat-btn").forEach(b => b.classList.remove("active"));
+    btn.classList.add("active");
+    activeCat = btn.dataset.cat;
+    renderLayout();
+  });
+
+  // Search Engine
+  searchInp.addEventListener("input", (e) => {
+    const val = e.target.value.toLowerCase().trim();
+    if (!val) {
+      searchResDiv.classList.add("hidden");
+      sectionsDiv.classList.remove("hidden");
+      return;
+    }
+    
+    sectionsDiv.classList.add("hidden");
+    searchResDiv.classList.remove("hidden");
+    
+    const match = CHANNELS.filter(ch => ch.name.toLowerCase().includes(val) || ch.category.toLowerCase().includes(val));
+    
+    if(!match.length) {
+      searchResDiv.innerHTML = `<div class="noresult"><svg fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path d="m21 21-5.197-5.197m0 0A7.5 7.5 0 1 0 5.196 5.196a7.5 7.5 0 0 0 10.607 10.607Z"/></svg><p>কোন চ্যানেল পাওয়া যায়নি!</p></div>`;
+      return;
+    }
+
+    searchResDiv.innerHTML = `<div class="section-title">খোঁজার ফলাফল <span class="ch-count">${match.length}</span></div>`;
+    const grid = document.createElement("div");
+    grid.className = "grid";
+    match.forEach(ch => grid.appendChild(createChannelCard(ch, false)));
+    searchResDiv.appendChild(grid);
+  });
+
+  // Refresh
+  btnRefresh.addEventListener("click", () => {
+    showToast("🔄 চ্যানেল লিস্ট রিফ্রেশ করা হচ্ছে...");
+    renderLayout();
+  });
+
+  // Player controls
+  pBack.onclick = () => { destroyPlayer(); pWrap.classList.remove("on"); };
+  pWrap.onclick = () => triggerUi();
+  pReload.onclick = (e) => { e.stopPropagation(); playChannel(currentChIdx, currentSrvIdx); };
+  
+  pNext.onclick = (e) => {
+    e.stopPropagation();
+    let next = currentChIdx + 1;
+    if (next >= CHANNELS.length) next = 0;
+    playChannel(next, 0);
+  };
+  
+  pPrev.onclick = (e) => {
+    e.stopPropagation();
+    let prev = currentChIdx - 1;
+    if (prev < 0) prev = CHANNELS.length - 1;
+    playChannel(prev, 0);
+  };
+
+  pFs.onclick = (e) => {
+    e.stopPropagation();
+    if (!document.fullscreenElement) {
+      pWrap.requestFullscreen().catch(() => showToast("Fullscreen not supported"));
+    } else {
+      document.exitFullscreen();
+    }
+  };
+}
+
+function showToast(msg) {
+  toast.textContent = msg;
+  toast.classList.add("show");
+  setTimeout(() => toast.classList.remove("show"), 3000);
 }
 </script>
 </body>
