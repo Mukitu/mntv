@@ -174,8 +174,7 @@ body::after{content:'';position:fixed;inset:0;
 #p-servers::-webkit-scrollbar{display:none}
 .srv-btn{flex-shrink:0;background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.15);color:#fff;padding:6px 14px;border-radius:20px;cursor:pointer;font-size:11px;font-weight:600;font-family:inherit;transition:.15s;white-space:nowrap}
 .srv-btn:hover,.srv-btn.on{background:var(--accent);border-color:var(--accent);box-shadow:0 0 12px var(--glow)}
-#p-fs{width:42px;height:42px;border-radius:50%;background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.12);color:#fff;cursor:pointer;display:flex;align-items:center;justify-content:center;flex-shrink:0;transition:.2s}
-#p-fs:hover{background:rgba(255,255,255,.2)}
+#p-fs"><svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M8 3H5a2 2 0 0 0-2 2v3m18 0V5a2 2 0 0 0-2-2h-3m0 18h3a2 2 0 0 0 2-2v-3M3 16v3a2 2 0 0 0 2 2h3"/></svg></button>
 #p-bottom{position:absolute;bottom:0;left:0;right:0;z-index:10;padding:20px;display:flex;justify-content:center;gap:14px;background:linear-gradient(0deg,rgba(0,0,0,.7) 0%,rgba(0,0,0,.3) 50%,transparent 100%);opacity:0;transition:opacity .3s;pointer-events:none}
 #player.show-ui #p-bottom,#player:hover #p-bottom{opacity:1;pointer-events:all}
 .ctrl{width:52px;height:52px;border-radius:50%;background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.12);color:#fff;cursor:pointer;display:flex;align-items:center;justify-content:center;backdrop-filter:blur(8px);transition:.2s}
@@ -264,8 +263,6 @@ body::after{content:'';position:fixed;inset:0;
 // ==========================================
 // 📺 সহজে চ্যানেল সাজানোর লিস্ট (CHANNELS DATA)
 // ==========================================
-// এখানে আপনার পছন্দমতো সিরিয়াল অনুযায়ী চ্যানেল মডিফাই করুন।
-// category অপশনগুলো: "sports", "entertainment", "news", "islamic", "kids", "others"
 const CHANNELS = [
   {
     "id": 1,
@@ -282,6 +279,17 @@ const CHANNELS = [
     ]
   },
   {
+    "id": 31,
+    "name": "SOMOY TV",
+    "category": "news",
+    "logo": "https://tvassets.roarzone.net/images/17.png",
+    "servers": [
+      {"label": "Server 1", "url": "https://edge2.roarzone.net:8447/roarzone/edge3/somoy_tv/index.m3u8?token=29983907d4d5c45d2fab308adf22b43ff6032c96-ede751a69fb1bc46fdebccfd1437f1a5-1780026843-1780016043"},
+      {"label": "Server 2", "url": "https://edge2.roarzone.net:8447/roarzone/edge5/somoy-news-tv/index.m3u8?token=938c64efd6e2a29ce9871dd9c42d4181bdd744e4-ea1b97e61cf9d7bf259772cc1fe251c7-1780026843-1780016043"},
+      {"label": "Server 3", "url": "https://tvsen6.aynaott.com/somoytv/index.m3u8?e=1780017865&u=78be6644-0a65-48ec-81a4-089ac65a2619&token=89b09b3cf74fbb53e0c820cc53f6e291"}
+    ]
+  },
+  {
     "id": 5,
     "name": "T Sports HD",
     "category": "sports",
@@ -291,6 +299,27 @@ const CHANNELS = [
       {"label": "Server 2", "url": "https://live-cdn.tsports.com/live-02/index.m3u8"},
       {"label": "Server 3", "url": "https://tvsen7.aynaott.com/tsports-hd/index.m3u8?e=1780017867&u=78be6644-0a65-48ec-81a4-089ac65a2619&token=7ab815ec6d9561ba5f29b7bba2d8270a"},
       {"label": "Server 4", "url": "https://edge2.roarzone.net:8447/roarzone/edge5/t-sports-hd/index.m3u8?token=61b2bfafb327140b1f2635dff7ea08e14b4a9efe-eaf78a76c00d16c6dd5491370d9d04e5-1780026843-1780016043"}
+    ]
+  },
+  {
+    "id": 39,
+    "name": "JAMUNA TV",
+    "category": "news",
+    "logo": "https://tvassets.roarzone.net/images/jamuna-tv.png",
+    "servers": [
+      {"label": "Server 1", "url": "https://edge2.roarzone.net:8447/roarzone/edge5/jamuna-tv/index.m3u8?token=b7b27ecd82faf1ac39656f822633d5141cab16c7-53d545f4fc125185ddd37adeba9b0211-1780026843-1780016043"},
+      {"label": "Server 2", "url": "https://tvsen6.aynaott.com/jamunatv/index.m3u8?e=1780017866&u=78be6644-0a65-48ec-81a4-089ac65a2619&token=51cdaf4efc7a9cbf9a608456ce56cd6f"}
+    ]
+  },
+  {
+    "id": 38,
+    "name": "EKATTOR TV",
+    "category": "news",
+    "logo": "https://tvassets.roarzone.net/images/ekattor-tv.png",
+    "servers": [
+      {"label": "Server 1", "url": "https://edge2.roarzone.net:8447/roarzone/edge5/ekattor-tv/index.m3u8?token=57685f6024ec355fda1db804f45b08013a78a2fb-76c8a24c0e444031cd6d83b95f112679-1780026843-1780016043"},
+      {"label": "Server 2", "url": "https://owrcovcrpy.gpcdn.net/bpk-tv/1705/output/index.m3u8"},
+      {"label": "Server 3", "url": "https://tvsen6.aynaott.com/ekattorbdtv/index.m3u8?e=1780017866&u=78be6644-0a65-48ec-81a4-089ac65a2619&token=f558b312a8b23cb225f7ea9e67f753b6"}
     ]
   },
   {
@@ -313,18 +342,6 @@ const CHANNELS = [
     "servers": [
       {"label": "Server 1", "url": "https://tvsen6.aynaott.com/btvctg/index.m3u8?e=1780017865&u=78be6644-0a65-48ec-81a4-089ac65a2619&token=e6ff38e4fef9210d444dd584923cb019"},
       {"label": "Server 2", "url": "https://edge2.roarzone.net:8447/roarzone/edge5/btv-ctg/index.m3u8?token=7401363ce0e9d3cfefef2470364bb00a32aaf03d-e939ae6b04100e575d6c93cb1bdfa4d6-1780026843-1780016043"}
-    ]
-  },
-  {
-    "id": 5,
-    "name": "T Sports HD",
-    "category": "sports",
-    "logo": "https://s3.aynaott.com/storage/dbc585f70a60b9855b6e13a8ce4cb6f4",
-    "servers": [
-      {"label": "Server 1", "url": "https://xstream.emonsa798.workers.dev/?url=http://premiumtvs.space:8080/live/6388578743/4853784376/18452.ts"},
-      {"label": "Server 2", "url": "https://live-cdn.tsports.com/live-02/index.m3u8"},
-      {"label": "Server 3", "url": "https://tvsen7.aynaott.com/tsports-hd/index.m3u8?e=1780017867&u=78be6644-0a65-48ec-81a4-089ac65a2619&token=7ab815ec6d9561ba5f29b7bba2d8270a"},
-      {"label": "Server 4", "url": "https://edge2.roarzone.net:8447/roarzone/edge5/t-sports-hd/index.m3u8?token=61b2bfafb327140b1f2635dff7ea08e14b4a9efe-eaf78a76c00d16c6dd5491370d9d04e5-1780026843-1780016043"}
     ]
   },
   {
@@ -587,17 +604,6 @@ const CHANNELS = [
     ]
   },
   {
-    "id": 31,
-    "name": "SOMOY TV",
-    "category": "news",
-    "logo": "https://tvassets.roarzone.net/images/17.png",
-    "servers": [
-      {"label": "Server 1", "url": "https://edge2.roarzone.net:8447/roarzone/edge3/somoy_tv/index.m3u8?token=29983907d4d5c45d2fab308adf22b43ff6032c96-ede751a69fb1bc46fdebccfd1437f1a5-1780026843-1780016043"},
-      {"label": "Server 2", "url": "https://edge2.roarzone.net:8447/roarzone/edge5/somoy-news-tv/index.m3u8?token=938c64efd6e2a29ce9871dd9c42d4181bdd744e4-ea1b97e61cf9d7bf259772cc1fe251c7-1780026843-1780016043"},
-      {"label": "Server 3", "url": "https://tvsen6.aynaott.com/somoytv/index.m3u8?e=1780017865&u=78be6644-0a65-48ec-81a4-089ac65a2619&token=89b09b3cf74fbb53e0c820cc53f6e291"}
-    ]
-  },
-  {
     "id": 32,
     "name": "CHANNEL 24",
     "category": "news",
@@ -657,27 +663,6 @@ const CHANNELS = [
     "servers": [
       {"label": "Server 1", "url": "https://edge2.roarzone.net:8447/roarzone/edge5/news-24-bd/index.m3u8?token=6458be3543e2d40bf444a7e10e1ad68e62b606ac-abdd5de5156afdee3f17d3724b72d8a0-1779346525-1779335725"},
       {"label": "Server 2", "url": "https://tvsen6.aynaott.com/news24/index.m3u8?e=1780017866&u=78be6644-0a65-48ec-81a4-089ac65a2619&token=10522b6d856e764a75fe6f827000bca2"}
-    ]
-  },
-  {
-    "id": 38,
-    "name": "EKATTOR TV",
-    "category": "news",
-    "logo": "https://tvassets.roarzone.net/images/ekattor-tv.png",
-    "servers": [
-      {"label": "Server 1", "url": "https://edge2.roarzone.net:8447/roarzone/edge5/ekattor-tv/index.m3u8?token=57685f6024ec355fda1db804f45b08013a78a2fb-76c8a24c0e444031cd6d83b95f112679-1780026843-1780016043"},
-      {"label": "Server 2", "url": "https://owrcovcrpy.gpcdn.net/bpk-tv/1705/output/index.m3u8"},
-      {"label": "Server 3", "url": "https://tvsen6.aynaott.com/ekattorbdtv/index.m3u8?e=1780017866&u=78be6644-0a65-48ec-81a4-089ac65a2619&token=f558b312a8b23cb225f7ea9e67f753b6"}
-    ]
-  },
-  {
-    "id": 39,
-    "name": "JAMUNA TV",
-    "category": "news",
-    "logo": "https://tvassets.roarzone.net/images/jamuna-tv.png",
-    "servers": [
-      {"label": "Server 1", "url": "https://edge2.roarzone.net:8447/roarzone/edge5/jamuna-tv/index.m3u8?token=b7b27ecd82faf1ac39656f822633d5141cab16c7-53d545f4fc125185ddd37adeba9b0211-1780026843-1780016043"},
-      {"label": "Server 2", "url": "https://tvsen6.aynaott.com/jamunatv/index.m3u8?e=1780017866&u=78be6644-0a65-48ec-81a4-089ac65a2619&token=51cdaf4efc7a9cbf9a608456ce56cd6f"}
     ]
   },
   {
@@ -926,543 +911,374 @@ const CHANNELS = [
     "category": "entertainment",
     "logo": "https://i.ibb.co/yBYRgLt/20240813-063955.png",
     "servers": [
-      {"label": "Server 1", "url": "https://server.thelegitpro.in/rongeentv/rongeentv/tracks-v1a1/mono.m3u8"}
-    ]
-  },
-  {
-    "id": 67,
-    "name": "Alpona TV",
-    "category": "entertainment",
-    "logo": "https://i.imgur.com/i6sQKUJ.jpeg",
-    "servers": [
-      {"label": "Server 1", "url": "https://app24.jagobd.com.bd/c3VydmVyX8RpbEU9Mi8xNy8yMFDEEHGcfRgzQ6NTAgdEoaeFzbF92YWxIZTO0U0ezN1IzMyfvcEdsEfeDeKiNkVN3PTOmdFseWRtaW51aiPhnPTI2/alponatv.stream/tracks-v1a1/mono.m3u8"}
-    ]
-  },
-  {
-    "id": 68,
-    "name": "Ja TV",
-    "category": "entertainment",
-    "logo": "https://i.imgur.com/f4QWLAG.jpeg",
-    "servers": [
-      {"label": "Server 1", "url": "https://iptv.porosh.com.bd/tmp_hls/86b122d4358357d834a87ce618a55de0/index.m3u8"}
-    ]
-  },
-  {
-    "id": 69,
-    "name": "Discovery HD Bangla",
-    "category": "entertainment",
-    "logo": "https://tvassets.roarzone.net/images/discovery_sd.png",
-    "servers": [
-      {"label": "Server 1", "url": "https://xstream.emonsa798.workers.dev/?url=http://premiumtvs.space:8080/live/6388578743/4853784376/406.ts"}
-    ]
-  },
-  {
-    "id": 70,
-    "name": "PTV SPORTS",
-    "category": "sports",
-    "logo": "https://tvassets.roarzone.net/images/ptv-sports.png",
-    "servers": [
-      {"label": "Server 1", "url": "https://edge2.roarzone.net:8447/roarzone/edge5/ptv-sports/index.m3u8?token=57114df9d0e65fd6d2de9a60709473058357034f-44a45a8de8adaf1f806bdb581ad82c26-1780026843-1780016043"},
-      {"label": "Server 2", "url": "https://tvsen5.aynaott.com/PtvSports/index.m3u8?e=1780017867&u=78be6644-0a65-48ec-81a4-089ac65a2619&token=2e9ff021f2fcfaae938d40253bc769d5"},
-      {"label": "Server 3", "url": "https://crichdproxy.saemon068.workers.dev/play?id=ptv-sports"}
-    ]
-  },
-  {
-    "id": 71,
-    "name": "A SPORTS",
-    "category": "sports",
-    "logo": "https://tvassets.roarzone.net/images/a-sports.png",
-    "servers": [
-      {"label": "Server 1", "url": "https://edge2.roarzone.net:8447/roarzone/edge5/a-sports/index.m3u8?token=336f6c46b2023288bcec9d22e0d795e317edabdb-9f260e6c3586c8b7d884e1d1682e9764-1780026843-1780016043"},
-      {"label": "Server 2", "url": "https://tvsen6.aynaott.com/asports/index.m3u8?e=1780017867&u=78be6644-0a65-48ec-81a4-089ac65a2619&token=a960f330695d5ae47639bf35c31e0713"},
-      {"label": "Server 3", "url": "https://crichdproxy.saemon068.workers.dev/play?id=a-sports-hd"},
-      {"label": "Server 4", "url": "https://tvsen6.aynaott.com/asports/index.m3u8"}
-    ]
-  },
-  {
-    "id": 72,
-    "name": "Star Sports 1",
-    "category": "sports",
-    "logo": "https://crichd.free/assets/uploads/channels/19.png",
-    "servers": [
-      {"label": "Server 1", "url": "https://xstream.emonsa798.workers.dev/?url=http://premiumtvs.space:8080/live/6388578743/4853784376/9397.ts"},
-      {"label": "Server 2", "url": "https://crichdproxy.saemon068.workers.dev/play?id=star-sports-1"},
-      {"label": "Server 3", "url": "https://tvsen7.aynaott.com/sspts1/tracks-v1a1/mono.ts.m3u8"}
-    ]
-  },
-  {
-    "id": 73,
-    "name": "Star Sports 1 Hindi",
-    "category": "sports",
-    "logo": "https://crichd.free/assets/uploads/channels/51.gif",
-    "servers": [
-      {"label": "Server 1", "url": "https://crichdproxy.saemon068.workers.dev/play?id=star-sports-1-hindi"}
-    ]
-  },
-  {
-    "id": 74,
-    "name": "WILLOW TV",
-    "category": "sports",
-    "logo": "https://tvassets.roarzone.net/images/willow-tv.png",
-    "servers": [
-      {"label": "Server 1", "url": "https://tvsen5.aynaott.com/willowhd/index.m3u8?e=1780017867&u=78be6644-0a65-48ec-81a4-089ac65a2619&token=a7ea30e9e7e6405c627f7ee18557b12e"},
-      {"label": "Server 2", "url": "https://tvsen5.aynaott.com/willowhd/index.m3u8?e=1779346505&u=78be6644-0a65-48ec-81a4-089ac65a2619&token=a095eb076c6d0c0bdcfca9c6550ebccb"}
-    ]
-  },
-  {
-    "id": 75,
-    "name": "Willow Cricket",
-    "category": "sports",
-    "logo": "https://crichd.free/assets/uploads/channels/20.png",
-    "servers": [
-      {"label": "Server 1", "url": "https://crichdproxy.saemon068.workers.dev/play?id=willow-cricket"}
-    ]
-  },
-  {
-    "id": 76,
-    "name": "Willow Cricket Extra",
-    "category": "sports",
-    "logo": "https://crichd.free/assets/uploads/channels/55.png",
-    "servers": [
-      {"label": "Server 1", "url": "https://crichdproxy.saemon068.workers.dev/play?id=willow-cricket-extra"}
-    ]
-  },
-  {
-    "id": 77,
-    "name": "Sky Sports Premier League",
-    "category": "sports",
-    "logo": "https://crichd.free/assets/uploads/channels/6.jpg",
-    "servers": [
-      {"label": "Server 1", "url": "https://crichdproxy.saemon068.workers.dev/play?id=sky-sports-premier-league"}
-    ]
-  },
-  {
-    "id": 78,
-    "name": "Sky Sports Cricket",
-    "category": "sports",
-    "logo": "https://crichd.free/assets/uploads/channels/3.png",
-    "servers": [
-      {"label": "Server 1", "url": "https://crichdproxy.saemon068.workers.dev/play?id=sky-sports-cricket"}
-    ]
-  },
-  {
-    "id": 79,
-    "name": "Sky Sports Football",
-    "category": "sports",
-    "logo": "https://crichd.free/assets/uploads/channels/47.png",
-    "servers": [
-      {"label": "Server 1", "url": "https://xstream.emonsa798.workers.dev/?url=http://premiumtvs.space:8080/live/6388578743/4853784376/19.ts"},
-      {"label": "Server 2", "url": "https://crichdproxy.saemon068.workers.dev/play?id=sky-sports-football"}
-    ]
-  },
-  {
-    "id": 80,
-    "name": "Sky Sports Main Event",
-    "category": "sports",
-    "logo": "https://crichd.free/assets/uploads/channels/1.jpg",
-    "servers": [
-      {"label": "Server 1", "url": "https://xstream.emonsa798.workers.dev/?url=http://premiumtvs.space:8080/live/6388578743/4853784376/122409.ts"},
-      {"label": "Server 2", "url": "https://crichdproxy.saemon068.workers.dev/play?id=sky-sports-main-event"}
-    ]
-  },
-  {
-    "id": 81,
-    "name": "Sky Sports Golf",
-    "category": "sports",
-    "logo": "https://crichd.free/assets/uploads/channels/5.png",
-    "servers": [
-      {"label": "Server 1", "url": "https://crichdproxy.saemon068.workers.dev/play?id=sky-sports-golf"}
-    ]
-  },
-  {
-    "id": 82,
-    "name": "Sky Sports Tennis",
-    "category": "sports",
-    "logo": "https://static.wikia.nocookie.net/logopedia/images/2/2d/Sky_Sports_Tennis.svg/revision/latest/scale-to-width-down/340?cb=20230830104212",
-    "servers": [
-      {"label": "Server 1", "url": "https://crichdproxy.saemon068.workers.dev/play?id=sky-sports-tennis"}
-    ]
-  },
-  {
-    "id": 83,
-    "name": "Sky Sports Action",
-    "category": "sports",
-    "logo": "https://crichd.free/assets/uploads/channels/4.png",
-    "servers": [
-      {"label": "Server 1", "url": "https://crichdproxy.saemon068.workers.dev/play?id=sky-sports-action"}
-    ]
-  },
-  {
-    "id": 84,
-    "name": "Sky Sports Mix",
-    "category": "sports",
-    "logo": "https://crichd.free/assets/uploads/channels/8.png",
-    "servers": [
-      {"label": "Server 1", "url": "https://crichdproxy.saemon068.workers.dev/play?id=sky-sports-mix"}
-    ]
-  },
-  {
-    "id": 85,
-    "name": "Sky Sports News",
-    "category": "sports",
-    "logo": "https://crichd.free/assets/uploads/channels/9.png",
-    "servers": [
-      {"label": "Server 1", "url": "https://crichdproxy.saemon068.workers.dev/play?id=sky-sports-news"}
-    ]
-  },
-  {
-    "id": 86,
-    "name": "Sky Sports F1",
-    "category": "sports",
-    "logo": "https://crichd.free/assets/uploads/channels/7.png",
-    "servers": [
-      {"label": "Server 1", "url": "https://crichdproxy.saemon068.workers.dev/play?id=sky-sports-f1"}
-    ]
-  },
-  {
-    "id": 87,
-    "name": "Sony Espn",
-    "category": "sports",
-    "logo": "https://tvassets.roarzone.net/images/espn.png",
-    "servers": [
-      {"label": "Server 1", "url": "https://crichdproxy.saemon068.workers.dev/play?id=sony-espn"}
+      {"label": "Server 1", "url": "https://server.thelegitpro.in/rongeentv/rongeentv/index.m3u8"}
     ]
   }
 ];
 
-// ==========================================
-// 🛠️ প্লেয়ার এবং অ্যাপ রেন্ডারিং ইঞ্জিন কোড
-// ==========================================
-let currentChannelIndex = 0;
-let currentServerIndex = 0;
-let hlsPlayer = null;
-let mpegtsPlayer = null;
-let activeCategory = 'all';
-let uiTimeout = null;
+// FEATURED CHANNELS (এখানে আপনার সিরিয়াল সেট করা হয়েছে)
+const FEATURED_IDS = [1, 31, 5, 39, 38]; // FIFA, SOMOY, T Sports, JAMUNA, EKATTOR
 
-const CATEGORY_NAMES = {
-  featured: "✨ প্রিমিয়াম ফিচারড",
-  sports: "⚽ স্পোর্টস লাইভ",
-  entertainment: "🎬 বিনোদন ও ড্রামা",
-  news: "📰 সর্বশেষ খবর",
-  islamic: "🕌 ইসলামিক চ্যানেল",
-  kids: "🧸 কার্টুন ও কিডস",
-  others: "🌐 অন্যান্য চ্যানেল"
+const CAT_NAMES = {
+  "sports": "স্পোর্টস",
+  "entertainment": "এন্টারটেইনমেন্ট",
+  "news": "নিউজ",
+  "islamic": "ইসলামিক",
+  "kids": "কিডস",
+  "others": "অন্যান্য"
 };
 
-window.addEventListener('DOMContentLoaded', () => {
-  setTimeout(() => {
-    const splash = document.getElementById('splash');
-    if (splash) splash.classList.add('hide');
-  }, 1600);
+// APP STATE
+let activeCat = "all";
+let currentChIdx = 0;
+let currentSrvIdx = 0;
+let filteredChs = [...CHANNELS];
+let hls = null;
+let flvPlayer = null;
+let uiTimeout = null;
 
-  renderApp();
-  initSearch();
-  initCategoryFilter();
-  initPlayerControls();
+// DOM ELEMENTS
+const splash = document.getElementById("splash");
+const searchInp = document.getElementById("search");
+const catBar = document.getElementById("cat-bar");
+const sectionsDiv = document.getElementById("sections");
+const searchResDiv = document.getElementById("search-results");
+const btnRefresh = document.getElementById("btn-refresh");
+
+// PLAYER DOM
+const pWrap = document.getElementById("player");
+const video = document.getElementById("video");
+const pLoad = document.getElementById("p-load");
+const pLoadName = document.getElementById("p-load-name");
+const pErr = document.getElementById("p-err");
+const pLogo = document.getElementById("p-logo");
+const pName = document.getElementById("p-name");
+const pServers = document.getElementById("p-servers");
+const pBack = document.getElementById("p-back");
+const pFs = document.getElementById("p-fs");
+const pPrev = document.getElementById("p-prev");
+const pNext = document.getElementById("p-next");
+const pReload = document.getElementById("p-reload");
+const toast = document.getElementById("toast");
+
+// INITIALIZE
+window.addEventListener("DOMContentLoaded", () => {
+  setTimeout(() => {
+    splash.classList.add("hide");
+  }, 1200);
+
+  renderLayout();
+  initEvents();
 });
 
-function renderApp() {
-  const sectionsContainer = document.getElementById('sections');
-  sectionsContainer.innerHTML = '';
-
-  // ফিচারড সেকশন তৈরি (প্রথম ৩টি চ্যানেল অটোমেটিক ফিচারড হিসেবে প্রিমিয়াম লেআউটে দেখাবে)
-  const featuredChannels = CHANNELS.slice(0, 3);
-  if (featuredChannels.length > 0 && activeCategory === 'all') {
-    createSection(sectionsContainer, 'featured', featuredChannels, true);
-  }
-
-  // ক্যাটাগরি ভিত্তিক সাধারণ চ্যানেল গ্রিড রেন্ডার
-  const categories = ['sports', 'entertainment', 'news', 'islamic', 'kids', 'others'];
-  categories.forEach(cat => {
-    if (activeCategory !== 'all' && activeCategory !== cat) return;
-    const filtered = CHANNELS.filter(ch => ch.category === cat);
-    if (filtered.length > 0) {
-      createSection(sectionsContainer, cat, filtered, false);
-    }
-  });
-}
-
-function createSection(parent, key, items, isFeatured) {
-  const wrapper = document.createElement('div');
-  wrapper.className = isFeatured ? 'featured-section' : 'section-wrapper';
-
-  const header = document.createElement('div');
-  header.className = isFeatured ? 'featured-hdr' : 'section-hdr';
-  header.innerHTML = `
-    <h2 class="section-title">${CATEGORY_NAMES[key]} 
-      <span class="ch-count">${items.length}</span>
-    </h2>
-  `;
-  wrapper.appendChild(header);
-
-  const grid = document.createElement('div');
-  grid.className = isFeatured ? 'featured-grid' : 'grid';
-
-  items.forEach(ch => {
-    const globalIdx = CHANNELS.findIndex(c => c.id === ch.id);
-    const card = document.createElement('div');
+function initEvents() {
+  // Category Switch
+  catBar.addEventListener("click", (e) => {
+    const btn = e.target.closest(".cat-btn");
+    if (!btn) return;
+    document.querySelectorAll(".cat-btn").forEach(b => b.classList.remove("active"));
+    btn.classList.add("active");
+    activeCat = btn.dataset.cat;
     
-    if (isFeatured) {
-      card.className = 'feat-card';
-      card.innerHTML = `
-        <div class="feat-logo-wrap">
-          <img class="feat-logo" src="${ch.logo}" alt="${ch.name}" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
-          <div class="feat-ph">${ch.name.substring(0,2)}</div>
-        </div>
-        <div class="feat-info">
-          <div>
-            <div class="feat-name">${ch.name}</div>
-            <div class="feat-srv"><span class="srv-dot"></span> 4K Ultra / HD</div>
-          </div>
-          <span class="feat-badge">PREMIUM</span>
-        </div>
-      `;
-    } else {
-      card.className = 'ch-card';
-      card.innerHTML = `
-        <img class="ch-logo" src="${ch.logo}" alt="${ch.name}" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
-        <div class="ch-ph">${ch.name.substring(0,2)}</div>
-        <div class="ch-name">${ch.name}</div>
-        <div class="ch-meta"><span class="srv-dot"></span> Live</div>
-      `;
+    if (activeCat !== "all") {
+      searchInp.value = "";
+      searchResDiv.classList.add("hidden");
+      sectionsDiv.classList.remove("hidden");
     }
-
-    card.addEventListener('click', () => playChannel(globalIdx, 0));
-    grid.appendChild(card);
+    renderLayout();
   });
 
-  wrapper.appendChild(grid);
-  if (!isFeatured) {
-    const divider = document.createElement('div');
-    divider.className = 'sec-divider';
-    wrapper.appendChild(divider);
-  }
-  parent.appendChild(wrapper);
-}
-
-function playChannel(index, serverIdx = 0) {
-  if (index < 0 || index >= CHANNELS.length) return;
-  currentChannelIndex = index;
-  currentServerIndex = serverIdx;
-  
-  const channel = CHANNELS[index];
-  const server = channel.servers[serverIdx];
-  if (!server) return;
-
-  const playerEl = document.getElementById('player');
-  const videoEl = document.getElementById('video');
-  const loadEl = document.getElementById('p-load');
-  const errEl = document.getElementById('p-err');
-  
-  playerEl.classList.add('on');
-  loadEl.classList.remove('off');
-  errEl.style.display = 'none';
-  
-  document.getElementById('p-load-name').innerText = `Loading ${channel.name}...`;
-  document.getElementById('p-name').innerText = channel.name;
-  document.getElementById('p-logo').src = channel.logo;
-
-  // সার্ভার টগল বাটন আপডেট
-  const srvContainer = document.getElementById('p-servers');
-  srvContainer.innerHTML = '';
-  channel.servers.forEach((srv, sIdx) => {
-    const btn = document.createElement('button');
-    btn.className = `srv-btn ${sIdx === serverIdx ? 'on' : ''}`;
-    btn.innerText = srv.label || `Server ${sIdx + 1}`;
-    btn.addEventListener('click', (e) => {
-      e.stopPropagation();
-      playChannel(index, sIdx);
-    });
-    srvContainer.appendChild(btn);
-  });
-
-  resetStreams();
-  triggerUiFeedback();
-
-  const isM3u8 = server.url.includes('.m3u8') || server.url.includes('playlist');
-  const isFlvOrTs = server.url.includes('.ts') || server.url.includes('.flv');
-
-  if (isM3u8) {
-    if (Hls.isSupported()) {
-      hlsPlayer = new Hls({ maxMaxBufferLength: 10, enableWorker: true });
-      hlsPlayer.loadSource(server.url);
-      hlsPlayer.attachMedia(videoEl);
-      hlsPlayer.on(Hls.Events.MANIFEST_PARSED, () => {
-        videoEl.play();
-        videoEl.classList.add('playing');
-        loadEl.classList.add('off');
-      });
-      hlsPlayer.on(Hls.Events.ERROR, (event, data) => {
-        if (data.fatal) handleStreamError();
-      });
-    } else if (videoEl.canPlayType('application/vnd.apple.mpegurl')) {
-      videoEl.src = server.url;
-      videoEl.addEventListener('loadedmetadata', () => {
-        videoEl.play();
-        videoEl.classList.add('playing');
-        loadEl.classList.add('off');
-      });
-    } else {
-      handleStreamError();
-    }
-  } else if (isFlvOrTs && mpegts.isSupported()) {
-    mpegtsPlayer = mpegts.createPlayer({ type: server.url.includes('.ts') ? 'mse' : 'flv', url: server.url, isLive: true });
-    mpegtsPlayer.attachMedia(videoEl);
-    mpegtsPlayer.load();
-    mpegtsPlayer.play();
-    videoEl.classList.add('playing');
-    loadEl.classList.add('off');
-    mpegtsPlayer.on(mpegts.ErrorTypes.NETWORK_ERROR, () => handleStreamError());
-  } else {
-    // ডাইরেক্ট সোর্স ফলব্যাক
-    videoEl.src = server.url;
-    videoEl.play().then(() => {
-      videoEl.classList.add('playing');
-      loadEl.classList.add('off');
-    }).catch(() => handleStreamError());
-  }
-}
-
-function handleStreamError() {
-  document.getElementById('p-load').classList.add('off');
-  document.getElementById('p-err').style.display = 'block';
-  showToast("স্ট্রিম লোড করা যায়নি! অন্য সার্ভার ট্রাই করুন।");
-  
-  // পরবর্তী সার্ভার অটো ট্রাই করার লজিক
-  setTimeout(() => {
-    if (currentServerIndex + 1 < CHANNELS[currentChannelIndex].servers.length) {
-      playChannel(currentChannelIndex, currentServerIndex + 1);
-    }
-  }, 3000);
-}
-
-function resetStreams() {
-  const videoEl = document.getElementById('video');
-  videoEl.pause();
-  videoEl.classList.remove('playing');
-  videoEl.src = '';
-  if (hlsPlayer) { hlsPlayer.destroy(); hlsPlayer = null; }
-  if (mpegtsPlayer) { mpegtsPlayer.destroy(); mpegtsPlayer = null; }
-}
-
-function initPlayerControls() {
-  const player = document.getElementById('player');
-  
-  player.addEventListener('click', triggerUiFeedback);
-  player.addEventListener('mousemove', triggerUiFeedback);
-
-  document.getElementById('p-back').addEventListener('click', (e) => {
-    e.stopPropagation();
-    resetStreams();
-    player.classList.remove('on');
-  });
-
-  document.getElementById('p-reload').addEventListener('click', (e) => {
-    e.stopPropagation();
-    playChannel(currentChannelIndex, currentServerIndex);
-  });
-
-  document.getElementById('p-next').addEventListener('click', (e) => {
-    e.stopPropagation();
-    let nextIdx = (currentChannelIndex + 1) % CHANNELS.length;
-    playChannel(nextIdx, 0);
-  });
-
-  document.getElementById('p-prev').addEventListener('click', (e) => {
-    e.stopPropagation();
-    let prevIdx = (currentChannelIndex - 1 + CHANNELS.length) % CHANNELS.length;
-    playChannel(prevIdx, 0);
-  });
-
-  document.getElementById('p-fs').addEventListener('click', (e) => {
-    e.stopPropagation();
-    if (!document.fullscreenElement) {
-      player.requestFullscreen().catch(err => console.log(err));
-    } else {
-      document.exitFullscreen();
-    }
-  });
-
-  document.getElementById('btn-refresh').addEventListener('click', () => {
-    showToast("চ্যানেল লিস্ট রিফ্রেশ করা হচ্ছে...");
-    renderApp();
-  });
-}
-
-function triggerUiFeedback() {
-  const player = document.getElementById('player');
-  player.classList.add('show-ui');
-  clearTimeout(uiTimeout);
-  uiTimeout = setTimeout(() => {
-    player.classList.remove('show-ui');
-  }, 3500);
-}
-
-function initCategoryFilter() {
-  const buttons = document.querySelectorAll('.cat-btn');
-  buttons.forEach(btn => {
-    btn.addEventListener('click', () => {
-      buttons.forEach(b => b.classList.remove('active'));
-      btn.classList.add('active');
-      activeCategory = btn.getAttribute('data-cat');
-      renderApp();
-    });
-  });
-}
-
-function initSearch() {
-  const input = document.getElementById('search');
-  const sections = document.getElementById('sections');
-  const resultsContainer = document.getElementById('search-results');
-
-  input.addEventListener('input', (e) => {
-    const val = e.target.value.toLowerCase().trim();
-    if (val === '') {
-      resultsContainer.classList.add('hidden');
-      sections.classList.remove('hidden');
+  // Search Action
+  searchInp.addEventListener("input", (e) => {
+    const q = e.target.value.toLowerCase().trim();
+    if (!q) {
+      searchResDiv.classList.add("hidden");
+      sectionsDiv.classList.remove("hidden");
       return;
     }
-
-    sections.classList.add('hidden');
-    resultsContainer.classList.remove('hidden');
-    resultsContainer.innerHTML = '';
-
-    const matched = CHANNELS.filter(ch => ch.name.toLowerCase().includes(val));
     
-    if (matched.length === 0) {
-      resultsContainer.innerHTML = `
-        <div class="noresult">
-          <svg fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="m21 21-5.197-5.197m0 0A7.5 7.5 0 1 0 5.196 5.196a7.5 7.5 0 0 0 10.602 10.602Z"/></svg>
-          <p>"${val}" নামে কোনো চ্যানেল পাওয়া যায়নি!</p>
-        </div>`;
-    } else {
-      const grid = document.createElement('div');
-      grid.className = 'grid';
-      matched.forEach(ch => {
-        const globalIdx = CHANNELS.findIndex(c => c.id === ch.id);
-        const card = document.createElement('div');
-        card.className = 'ch-card';
-        card.innerHTML = `
-          <img class="ch-logo" src="${ch.logo}" alt="${ch.name}" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
-          <div class="ch-ph">${ch.name.substring(0,2)}</div>
-          <div class="ch-name">${ch.name}</div>
-        `;
-        card.addEventListener('click', () => playChannel(globalIdx, 0));
-        grid.appendChild(card);
-      });
-      resultsContainer.appendChild(grid);
-    }
+    document.querySelectorAll(".cat-btn").forEach(b => b.classList.remove("active"));
+    document.querySelector('[data-cat="all"]').classList.add("active");
+    activeCat = "all";
+
+    const matches = CHANNELS.filter(c => c.name.toLowerCase().includes(q));
+    renderSearchResults(matches);
   });
+
+  // Refresh
+  btnRefresh.addEventListener("click", () => {
+    showToast("চ্যানেল লিস্ট রিফ্রেশ করা হয়েছে 🔄");
+    renderLayout();
+  });
+
+  // Player Events
+  pBack.addEventListener("click", closePlayer);
+  pReload.addEventListener("click", () => playChannel(currentChIdx, currentSrvIdx));
+  pPrev.addEventListener("click", () => switchChannel(-1));
+  pNext.addEventListener("click", () => switchChannel(1));
+  pFs.addEventListener("click", toggleFullscreen);
+
+  // Auto Hide Player Controls
+  pWrap.addEventListener("mousemove", triggerUiView);
+  pWrap.addEventListener("touchstart", triggerUiView);
 }
 
 function showToast(msg) {
-  const t = document.getElementById('toast');
-  t.innerText = msg;
-  t.classList.add('show');
-  setTimeout(() => t.classList.remove('show'), 3000);
+  toast.innerText = msg;
+  toast.classList.add("show");
+  setTimeout(() => toast.classList.remove("show"), 2500);
+}
+
+function renderLayout() {
+  sectionsDiv.innerHTML = "";
+  
+  if (activeCat === "all") {
+    // Render Featured Top
+    const featChs = FEATURED_IDS.map(id => CHANNELS.find(c => c.id === id)).filter(Boolean);
+    if (featChs.length > 0) {
+      const secHdr = document.createElement("div");
+      secHdr.className = "featured-hdr";
+      secHdr.innerHTML = `<h2 class="section-title">ফিচার্ড চ্যানেল <span class="ch-count">${featChs.length}</span></h2>`;
+      sectionsDiv.appendChild(secHdr);
+
+      const fGrid = document.createElement("div");
+      fGrid.className = "featured-section";
+      const fGridInner = document.createElement("div");
+      fGridInner.className = "featured-grid";
+
+      featChs.forEach(ch => {
+        const idx = CHANNELS.findIndex(c => c.id === ch.id);
+        const card = document.createElement("div");
+        card.className = "feat-card";
+        card.innerHTML = `
+          <div class="feat-logo-wrap">
+            <img class="feat-logo" src="${ch.logo}" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';" alt="${ch.name}">
+            <div class="feat-ph">${ch.name.substring(0,2).toUpperCase()}</div>
+          </div>
+          <div class="feat-info">
+            <div>
+              <div class="feat-name">${ch.name}</div>
+              <div class="feat-srv"><span class="srv-dot"></span>${ch.servers.length} সার্ভার অনলাইন</div>
+            </div>
+            <div class="feat-badge">LIVE</div>
+          </div>
+        `;
+        card.addEventListener("click", () => playChannel(idx, 0));
+        fGridInner.appendChild(card);
+      });
+      fGrid.appendChild(fGridInner);
+      sectionsDiv.appendChild(fGrid);
+      
+      const div = document.createElement("div");
+      div.className = "sec-divider";
+      sectionsDiv.appendChild(div);
+    }
+
+    // Render Categorized Segments
+    Object.keys(CAT_NAMES).forEach(cat => {
+      const catChs = CHANNELS.filter(c => c.category === cat);
+      if (catChs.length > 0) {
+        renderSection(CAT_NAMES[cat], catChs);
+      }
+    });
+  } else {
+    const catChs = CHANNELS.filter(c => c.category === activeCat);
+    renderSection(CAT_NAMES[activeCat], catChs);
+  }
+}
+
+function renderSection(title, list) {
+  const hdr = document.createElement("h2");
+  hdr.className = "section-title";
+  hdr.innerHTML = `${title} <span class="ch-count">${list.length}</span>`;
+  sectionsDiv.appendChild(hdr);
+
+  const grid = document.createElement("div");
+  grid.className = "grid";
+
+  list.forEach(ch => {
+    const origIdx = CHANNELS.findIndex(c => c.id === ch.id);
+    const card = document.createElement("div");
+    card.className = "ch-card";
+    card.innerHTML = `
+      <img class="ch-logo" src="${ch.logo}" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';" alt="${ch.name}">
+      <div class="ch-ph">${ch.name.substring(0,2).toUpperCase()}</div>
+      <div class="ch-name">${ch.name}</div>
+      <div class="ch-meta"><span class="srv-dot"></span>${ch.servers.length} সার্ভার</div>
+    `;
+    card.addEventListener("click", () => playChannel(origIdx, 0));
+    grid.appendChild(card);
+  });
+
+  sectionsDiv.appendChild(grid);
+}
+
+function renderSearchResults(results) {
+  sectionsDiv.classObj = "hidden";
+  sectionsDiv.classList.add("hidden");
+  searchResDiv.classList.remove("hidden");
+  searchResDiv.innerHTML = "";
+
+  if (results.length === 0) {
+    searchResDiv.innerHTML = `
+      <div class="noresult">
+        <svg fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-5.197-5.197m0 0A7.5 7.5 0 105.196 5.196a7.5 7.5 0 0010.604 10.604z"/></svg>
+        <p>দুঃখিত, কোনো চ্যানেল পাওয়া যায়নি!</p>
+      </div>`;
+    return;
+  }
+
+  const hdr = document.createElement("h2");
+  hdr.className = "section-title";
+  hdr.innerHTML = `খোঁজার ফলাফল <span class="ch-count">${results.length}</span>`;
+  searchResDiv.appendChild(hdr);
+
+  const grid = document.createElement("div");
+  grid.className = "grid";
+
+  results.forEach(ch => {
+    const origIdx = CHANNELS.findIndex(c => c.id === ch.id);
+    const card = document.createElement("div");
+    card.className = "ch-card";
+    card.innerHTML = `
+      <img class="ch-logo" src="${ch.logo}" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';" alt="${ch.name}">
+      <div class="ch-ph">${ch.name.substring(0,2).toUpperCase()}</div>
+      <div class="ch-name">${ch.name}</div>
+      <div class="ch-meta"><span class="srv-dot"></span>${ch.servers.length} সার্ভার</div>
+    `;
+    card.addEventListener("click", () => playChannel(origIdx, 0));
+    grid.appendChild(card);
+  });
+  searchResDiv.appendChild(grid);
+}
+
+// PLAYER ENGINE
+function playChannel(chIdx, srvIdx) {
+  destroyPlayers();
+  
+  currentChIdx = chIdx;
+  currentSrvIdx = srvIdx;
+  const ch = CHANNELS[chIdx];
+  const srv = ch.servers[srvIdx];
+
+  pWrap.classList.add("on");
+  video.classList.remove("playing");
+  pLoad.classList.remove("off");
+  pErr.style.display = "none";
+  
+  pLoadName.innerText = `প্লে হচ্ছে: ${ch.name}`;
+  pName.innerText = ch.name;
+  pLogo.src = ch.logo;
+  pLogo.onerror = () => pLogo.style.display='none';
+
+  // Render Servers
+  pServers.innerHTML = "";
+  ch.servers.forEach((s, idx) => {
+    const btn = document.createElement("button");
+    btn.className = `srv-btn ${idx === srvIdx ? 'on' : ''}`;
+    btn.innerText = s.label;
+    btn.addEventListener("click", (e) => {
+      e.stopPropagation();
+      playChannel(chIdx, idx);
+    });
+    pServers.appendChild(btn);
+  });
+
+  triggerUiView();
+
+  const url = srv.url.split('?')[0];
+  const isM3u8 = url.endsWith('.m3u8') || srv.url.includes('playlist.m3u8');
+  const isFlv = url.endsWith('.flv') || url.endsWith('.ts');
+
+  if (isM3u8) {
+    if (video.canPlayType('application/vnd.apple.mpegurl')) {
+      video.src = srv.url;
+      video.addEventListener('loadedmetadata', handlePlaySuccess);
+      video.addEventListener('error', handlePlayError);
+    } else if (Hls.isSupported()) {
+      hls = new Hls({ maxMaxBufferLength: 10, liveSyncDurationCount: 3 });
+      hls.loadSource(srv.url);
+      hls.attachMedia(video);
+      hls.on(Hls.Events.MANIFEST_PARSED, handlePlaySuccess);
+      hls.on(Hls.Events.ERROR, (event, data) => {
+        if (data.fatal) handlePlayError();
+      });
+    } else {
+      fallbackPlay();
+    }
+  } else if (isFlv || mpegts.getFeatureList().mseFlvPlayback) {
+    flvPlayer = mpegts.createPlayer({ type: 'mse', url: srv.url, isLive: true });
+    flvPlayer.attachMedia(video);
+    flvPlayer.load();
+    handlePlaySuccess();
+  } else {
+    fallbackPlay();
+  }
+}
+
+function handlePlaySuccess() {
+  pLoad.classList.add("off");
+  video.classList.add("playing");
+  video.play().catch(() => {
+    video.muted = true;
+    video.play();
+    showToast("সাউন্ড অন করতে স্ক্রিনে ট্যাপ করুন 🔊");
+  });
+}
+
+function handlePlayError() {
+  destroyPlayers();
+  pErr.style.display = "block";
+  
+  // Auto switch server if failure occurs
+  const nextSrv = currentSrvIdx + 1;
+  if (nextSrv < CHANNELS[currentChIdx].servers.length) {
+    setTimeout(() => playChannel(currentChIdx, nextSrv), 2000);
+  } else {
+    pLoad.classList.add("off");
+    showToast("এই চ্যানেলের সব সার্ভার ডাউন আছে ❌");
+  }
+}
+
+function fallbackPlay() {
+  video.src = CHANNELS[currentChIdx].servers[currentSrvIdx].url;
+  handlePlaySuccess();
+}
+
+function switchChannel(dir) {
+  let nIdx = currentChIdx + dir;
+  if (nIdx >= CHANNELS.length) nIdx = 0;
+  if (nIdx < 0) nIdx = CHANNELS.length - 1;
+  playChannel(nIdx, 0);
+}
+
+function closePlayer() {
+  destroyPlayers();
+  pWrap.classList.remove("on");
+}
+
+function destroyPlayers() {
+  video.pause();
+  video.src = "";
+  if (hls) { hls.destroy(); hls = null; }
+  if (flvPlayer) { flvPlayer.destroy(); flvPlayer = null; }
+}
+
+function toggleFullscreen() {
+  if (!document.fullscreenElement) {
+    pWrap.requestFullscreen().catch(() => {});
+  } else {
+    document.exitFullscreen();
+  }
+}
+
+function triggerUiView() {
+  pWrap.classList.add("show-ui");
+  clearTimeout(uiTimeout);
+  uiTimeout = setTimeout(() => {
+    pWrap.classList.remove("show-ui");
+  }, 3500);
 }
 </script>
-
 </body>
 </html>
