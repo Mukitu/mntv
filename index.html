@@ -26,7 +26,6 @@
 html{scroll-behavior:smooth}
 body{background:var(--bg);color:var(--text);font-family:'Outfit',sans-serif;-webkit-tap-highlight-color:transparent;overflow-x:hidden;min-height:100vh}
 
-/* AMBIENT BG */
 body::before{content:'';position:fixed;inset:0;
   background:radial-gradient(ellipse 70% 40% at 15% 0%,rgba(225,29,72,.1),transparent 60%),
     radial-gradient(ellipse 50% 30% at 85% 30%,rgba(99,102,241,.07),transparent 60%),
@@ -39,7 +38,6 @@ body::after{content:'';position:fixed;inset:0;
 ::-webkit-scrollbar{width:4px;height:4px}
 ::-webkit-scrollbar-thumb{background:rgba(255,255,255,.12);border-radius:2px}
 
-/* SPLASH */
 #splash{position:fixed;inset:0;z-index:10000;background:var(--bg);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:28px;transition:opacity .6s,visibility .6s}
 #splash.hide{opacity:0;visibility:hidden;pointer-events:none}
 .splash-logo{width:96px;height:96px;border-radius:28px;background:linear-gradient(135deg,var(--accent),#9f1239);display:flex;align-items:center;justify-content:center;font-family:'Syne',sans-serif;font-weight:800;font-size:40px;color:#fff;box-shadow:0 0 0 1px rgba(225,29,72,.3),0 0 80px var(--glow);animation:logoPulse 2.5s ease-in-out infinite}
@@ -51,7 +49,6 @@ body::after{content:'';position:fixed;inset:0;
 .splash-bar span{display:block;height:100%;background:linear-gradient(90deg,var(--accent),var(--accent2),var(--gold));animation:loadBar 1.4s ease-in-out infinite}
 @keyframes loadBar{0%{width:0;margin-left:0}50%{width:65%;margin-left:15%}100%{width:0;margin-left:100%}}
 
-/* HEADER */
 .header{position:fixed;top:0;left:0;right:0;z-index:200;height:var(--header);background:rgba(5,5,8,.9);border-bottom:1px solid var(--border);backdrop-filter:blur(24px) saturate(1.8);display:flex;align-items:center;gap:14px;padding:0 16px}
 .header::after{content:'';position:absolute;bottom:0;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,var(--accent),transparent);opacity:.4}
 .logo-wrap{display:flex;align-items:center;gap:10px;flex-shrink:0;text-decoration:none}
@@ -69,33 +66,23 @@ body::after{content:'';position:fixed;inset:0;
 .live-pill{background:linear-gradient(135deg,var(--accent),#be123c);color:#fff;font-size:9px;font-weight:700;padding:6px 11px;border-radius:20px;letter-spacing:2px;animation:liveBlink 2.5s infinite;box-shadow:0 0 16px var(--glow)}
 @keyframes liveBlink{0%,100%{opacity:1;box-shadow:0 0 16px var(--glow)}50%{opacity:.8;box-shadow:0 0 8px var(--glow)}}
 
-/* CATEGORIES */
 .cat-bar{position:fixed;top:var(--header);left:0;right:0;z-index:199;height:var(--cat);background:rgba(8,8,14,.94);border-bottom:1px solid var(--border);display:flex;align-items:center;gap:7px;padding:0 14px;overflow-x:auto;scrollbar-width:none;backdrop-filter:blur(20px)}
 .cat-bar::-webkit-scrollbar{display:none}
 .cat-btn{flex-shrink:0;background:transparent;border:1px solid rgba(255,255,255,.07);color:var(--muted);font-family:inherit;font-weight:600;font-size:11.5px;padding:7px 15px;border-radius:24px;cursor:pointer;transition:.22s;white-space:nowrap;display:flex;align-items:center;gap:5px;letter-spacing:.3px}
 .cat-btn.active{background:linear-gradient(135deg,var(--accent),#be123c);color:#fff;border-color:transparent;box-shadow:0 4px 20px var(--glow),inset 0 1px 0 rgba(255,255,255,.15)}
 
-/* MAIN */
 .main{position:relative;z-index:1;padding-top:calc(var(--header) + var(--cat) + 18px);padding-bottom:40px;min-height:100vh}
-
-/* STATS BAR */
 .stats-bar{display:flex;justify-content:center;gap:0;padding:12px 16px 4px;flex-wrap:wrap}
 .stat{text-align:center;padding:8px 20px;border-right:1px solid var(--border)}
 .stat:last-child{border-right:none}
 .stat-num{font-family:'Syne',sans-serif;font-size:20px;font-weight:800;background:linear-gradient(135deg,var(--accent2),var(--gold));-webkit-background-clip:text;-webkit-text-fill-color:transparent}
 .stat-lbl{font-size:9px;color:var(--muted);letter-spacing:1.5px;text-transform:uppercase;margin-top:2px}
-
-/* SECTION TITLES */
 .section-title{padding:18px 16px 10px;font-family:'Syne',sans-serif;font-size:11px;font-weight:700;letter-spacing:3.5px;text-transform:uppercase;color:var(--muted);display:flex;align-items:center;gap:10px}
 .section-title::before{content:'';width:3px;height:14px;background:linear-gradient(180deg,var(--accent),var(--accent2));border-radius:2px;flex-shrink:0}
 .ch-count{font-size:10px;background:rgba(255,255,255,.05);border:1px solid var(--border);padding:3px 10px;border-radius:12px;color:var(--muted);font-family:'Outfit',sans-serif;font-weight:500;letter-spacing:0}
-
-/* GRID - Optimized for low network */
 .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(90px,1fr));gap:9px;padding:0 12px 16px}
 @media(min-width:480px){.grid{grid-template-columns:repeat(auto-fill,minmax(105px,1fr));gap:10px;padding:0 14px 18px}}
 @media(min-width:768px){.grid{grid-template-columns:repeat(auto-fill,minmax(115px,1fr));gap:12px;padding:0 16px 20px}}
-
-/* CHANNEL CARD - Optimized */
 .ch-card{background:var(--card);border:1px solid var(--border);border-radius:var(--radius);padding:14px 10px 12px;cursor:pointer;transition:transform .22s cubic-bezier(.34,1.56,.64,1),box-shadow .22s;display:flex;flex-direction:column;align-items:center;gap:8px;position:relative;overflow:hidden}
 .ch-card:hover{transform:translateY(-4px) scale(1.01);border-color:rgba(225,29,72,.3);box-shadow:0 16px 48px rgba(0,0,0,.6),0 0 20px rgba(225,29,72,.1)}
 .ch-card:active{transform:scale(.96)}
@@ -105,14 +92,11 @@ body::after{content:'';position:fixed;inset:0;
 .ch-meta{font-size:9px;color:var(--muted);display:flex;align-items:center;gap:4px;position:relative;z-index:1}
 .srv-dot{width:5px;height:5px;border-radius:50%;background:#22c55e;box-shadow:0 0 6px rgba(34,197,94,.5);animation:pulseGreen 2s infinite}
 @keyframes pulseGreen{0%,100%{opacity:1}50%{opacity:.5}}
-
-/* FEATURED SECTION */
 .featured-section{padding:0 12px 8px;margin-bottom:4px}
 @media(min-width:480px){.featured-section{padding:0 14px 10px}}
 .featured-grid{display:grid;grid-template-columns:1fr;gap:12px}
 @media(min-width:480px){.featured-grid{grid-template-columns:repeat(auto-fill,minmax(260px,1fr))}}
 @media(min-width:768px){.featured-grid{grid-template-columns:repeat(3,1fr);gap:14px}}
-
 .feat-card{background:linear-gradient(145deg,#16100a 0%,#0d0d18 50%,#080810 100%);border:1px solid rgba(245,158,11,.18);border-radius:var(--radius-lg);height:var(--feat-h);cursor:pointer;position:relative;overflow:hidden;display:flex;flex-direction:column;justify-content:flex-end;padding:0;transition:transform .28s,box-shadow .28s}
 .feat-card::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,transparent 0%,var(--gold) 30%,var(--gold2) 50%,var(--gold) 70%,transparent 100%);opacity:.6}
 .feat-card:hover{transform:translateY(-6px) scale(1.01);border-color:rgba(245,158,11,.4);box-shadow:0 24px 60px rgba(0,0,0,.8),0 0 40px rgba(245,158,11,.15)}
@@ -127,8 +111,6 @@ body::after{content:'';position:fixed;inset:0;
 .sec-divider{height:1px;background:linear-gradient(90deg,transparent,var(--border) 30%,var(--border) 70%,transparent);margin:4px 16px 2px}
 .noresult{padding:80px 24px;text-align:center;color:var(--muted)}
 .hidden{display:none!important}
-
-/* PLAYER */
 #player{position:fixed;inset:0;z-index:5000;background:#000;display:none;flex-direction:column}
 #player.on{display:flex}
 #video{width:100%;height:100%;object-fit:contain;background:#000;display:none}
@@ -147,8 +129,8 @@ body::after{content:'';position:fixed;inset:0;
 #p-name{flex:1;font-family:'Syne',sans-serif;font-weight:700;font-size:16px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 #p-servers{display:flex;gap:6px;overflow-x:auto;max-width:50vw;scrollbar-width:none;padding:2px}
 #p-servers::-webkit-scrollbar{display:none}
-.srv-btn{flex-shrink:0;background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.15);color:#fff;padding:6px 12px;border-radius:20px;cursor:pointer;font-size:10px;font-weight:600;font-family:inherit;transition:.15s;white-space:nowrap}
-.srv-btn:hover,.srv-btn.on{background:var(--accent);border-color:var(--accent);box-shadow:0 0 12px var(--glow)}
+.srv-btn,.quality-btn{flex-shrink:0;background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.15);color:#fff;padding:5px 12px;border-radius:20px;cursor:pointer;font-size:10px;font-weight:600;font-family:inherit;transition:.15s;white-space:nowrap}
+.srv-btn:hover,.srv-btn.on,.quality-btn:hover,.quality-btn.on{background:var(--accent);border-color:var(--accent);box-shadow:0 0 12px var(--glow)}
 #p-bottom{position:absolute;bottom:0;left:0;right:0;z-index:10;padding:20px;display:flex;justify-content:center;gap:14px;background:linear-gradient(0deg,rgba(0,0,0,.7) 0%,rgba(0,0,0,.3) 50%,transparent 100%);opacity:0;transition:opacity .3s;pointer-events:none}
 #player.show-ui #p-bottom,#player:hover #p-bottom{opacity:1;pointer-events:all}
 .ctrl{width:48px;height:48px;border-radius:50%;background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.12);color:#fff;cursor:pointer;display:flex;align-items:center;justify-content:center;backdrop-filter:blur(8px);transition:.2s}
@@ -157,486 +139,37 @@ body::after{content:'';position:fixed;inset:0;
 .footer strong{color:var(--accent2);font-family:'Syne',sans-serif}
 .toast{position:fixed;bottom:28px;left:50%;transform:translateX(-50%) translateY(80px);background:rgba(10,10,20,.96);color:var(--text);padding:12px 24px;border-radius:30px;font-size:13px;font-weight:500;z-index:9999;border:1px solid rgba(255,255,255,.1);backdrop-filter:blur(16px);opacity:0;transition:.3s;pointer-events:none}
 .toast.show{transform:translateX(-50%) translateY(0);opacity:1}
+.quality-selector{display:flex;gap:6px;margin-left:8px;border-left:1px solid rgba(255,255,255,.2);padding-left:10px}
 </style>
 </head>
 <body>
-
-<div id="splash">
-  <div class="splash-logo">⚽</div>
-  <div class="splash-title">MN TV</div>
-  <div class="splash-sub">FIFA Worldcup Live Streaming</div>
-  <div class="splash-bar"><span></span></div>
-</div>
-
-<header class="header">
-  <a class="logo-wrap" href="#" onclick="return false">
-    <div class="logo-icon">⚽</div>
-    <div class="logo-text">
-      <div class="name">CodeCloudBD</div>
-      <span class="sub">Live Streaming</span>
-    </div>
-  </a>
-  <div class="header-search">
-    <input type="text" id="search" placeholder="🔍 চ্যানেল খুঁজুন..." autocomplete="off">
-  </div>
-  <div class="header-actions">
-    <span class="live-pill">● LIVE</span>
-    <button class="hbtn" id="btn-refresh" title="Refresh">⟳</button>
-  </div>
-</header>
-
-<div class="cat-bar" id="cat-bar">
-  <button class="cat-btn active" data-cat="all">সব</button>
-  <button class="cat-btn" data-cat="Sports">স্পোর্টস</button>
-  <button class="cat-btn" data-cat="FIFA World Cup">ফিফা বিশ্বকাপ</button>
-  <button class="cat-btn" data-cat="Bangladesh">বাংলাদেশ</button>
-  <button class="cat-btn" data-cat="Entertainment">এন্টারটেইনমেন্ট</button>
-  <button class="cat-btn" data-cat="News">নিউজ</button>
-  <button class="cat-btn" data-cat="Movies">সিনেমা</button>
-  <button class="cat-btn" data-cat="Music">মিউজিক</button>
-  <button class="cat-btn" data-cat="Cartoon">কার্টুন</button>
-  <button class="cat-btn" data-cat="Documentary">ডকুমেন্টারি</button>
-</div>
-
-<main class="main">
-  <div class="stats-bar">
-    <div class="stat"><div class="stat-num" id="totalChannels">0</div><div class="stat-lbl">চ্যানেল</div></div>
-    <div class="stat"><div class="stat-num">HD+</div><div class="stat-lbl">কোয়ালিটি</div></div>
-    <div class="stat"><div class="stat-num">24/7</div><div class="stat-lbl">লাইভ</div></div>
-    <div class="stat"><div class="stat-num">FREE</div><div class="stat-lbl">সম্পূর্ণ ফ্রি</div></div>
-  </div>
-  <div id="search-results" class="hidden"></div>
-  <div id="sections"></div>
-  <footer class="footer">
-    <strong>MN TV</strong> — FIFA Worldcup Live Streaming<br>
-    <span style="font-size:10px;margin-top:6px;display:block;opacity:.7">© 2026 CodeCloudBD. All rights reserved.</span>
-  </footer>
-</main>
-
+<div id="splash"><div class="splash-logo">⚽</div><div class="splash-title">MN TV</div><div class="splash-sub">FIFA Worldcup Live Streaming</div><div class="splash-bar"><span></span></div></div>
+<header class="header"><a class="logo-wrap" href="#" onclick="return false"><div class="logo-icon">⚽</div><div class="logo-text"><div class="name">CodeCloudBD</div><span class="sub">Live Streaming</span></div></a><div class="header-search"><input type="text" id="search" placeholder="🔍 চ্যানেল খুঁজুন..." autocomplete="off"></div><div class="header-actions"><span class="live-pill">● LIVE</span><button class="hbtn" id="btn-refresh" title="Refresh">⟳</button></div></header>
+<div class="cat-bar" id="cat-bar"><button class="cat-btn active" data-cat="all">সব</button><button class="cat-btn" data-cat="Sports">স্পোর্টস</button><button class="cat-btn" data-cat="FIFA World Cup">ফিফা বিশ্বকাপ</button><button class="cat-btn" data-cat="Bangladesh">বাংলাদেশ</button><button class="cat-btn" data-cat="Entertainment">এন্টারটেইনমেন্ট</button><button class="cat-btn" data-cat="News">নিউজ</button><button class="cat-btn" data-cat="Movies">সিনেমা</button><button class="cat-btn" data-cat="Music">মিউজিক</button><button class="cat-btn" data-cat="Cartoon">কার্টুন</button><button class="cat-btn" data-cat="Documentary">ডকুমেন্টারি</button></div>
+<main class="main"><div class="stats-bar"><div class="stat"><div class="stat-num" id="totalChannels">0</div><div class="stat-lbl">চ্যানেল</div></div><div class="stat"><div class="stat-num">HD/SD</div><div class="stat-lbl">কোয়ালিটি</div></div><div class="stat"><div class="stat-num">24/7</div><div class="stat-lbl">লাইভ</div></div><div class="stat"><div class="stat-num">FREE</div><div class="stat-lbl">সম্পূর্ণ ফ্রি</div></div></div><div id="search-results" class="hidden"></div><div id="sections"></div><footer class="footer"><strong>MN TV</strong> — FIFA Worldcup Live Streaming<br><span style="font-size:10px;margin-top:6px;display:block;opacity:.7">© 2026 CodeCloudBD. All rights reserved.</span></footer></main>
 <div class="toast" id="toast"></div>
-
-<div id="player">
-  <video id="video" playsinline webkit-playsinline></video>
-  <div id="p-load"><div class="p-spin"></div><div class="p-load-name" id="p-load-name">Loading...</div></div>
-  <div id="p-err">⚠️ স্ট্রিম ত্রুটি — অন্য সার্ভার চেষ্টা করা হচ্ছে...</div>
-  <div id="p-top">
-    <button id="p-back">←</button>
-    <img id="p-logo" src="" alt="">
-    <div id="p-name">Channel</div>
-    <div id="p-servers"></div>
-    <button id="p-fs">⛶</button>
-  </div>
-  <div id="p-bottom">
-    <button class="ctrl" id="p-prev">◀◀</button>
-    <button class="ctrl" id="p-reload">⟳</button>
-    <button class="ctrl" id="p-next">▶▶</button>
-  </div>
-</div>
-
+<div id="player"><video id="video" playsinline webkit-playsinline></video><div id="p-load"><div class="p-spin"></div><div class="p-load-name" id="p-load-name">Loading...</div></div><div id="p-err">⚠️ স্ট্রিম ত্রুটি — অন্য সার্ভার চেষ্টা করা হচ্ছে...</div><div id="p-top"><button id="p-back">←</button><img id="p-logo" src="" alt=""><div id="p-name">Channel</div><div id="p-servers"></div><div class="quality-selector" id="qualitySelector"></div><button id="p-fs">⛶</button></div><div id="p-bottom"><button class="ctrl" id="p-prev">◀◀</button><button class="ctrl" id="p-reload">⟳</button><button class="ctrl" id="p-next">▶▶</button></div></div>
 <script>
-
 const CHANNELS = [
-  {id:1,name:"Caze Tv Brazil",category:"FIFA World Cup",logo:"https://stream.codecloud.bd/uploads/logos/logo_6a2916d039dd9.png",servers:[{label:"Main",url:"https://dfr80qz435crc.cloudfront.net/MNOP/Amagi/Caze/Caze_TV_BR/1080p-vtt/index.m3u8"},{label:"Backup",url:"https://dfr80qz435crc.cloudfront.net/MNOP/Amagi/Caze/Caze_TV_BR/Caze_TV.m3u8"}]},
-  {id:2,name:"FIFA Plus B 🏆",category:"Sports",logo:"https://i.ibb.co.com/vnbkF0r/fifa-world-cup-2026-logo-png-seeklogo-665644.png",servers:[{label:"Server 1",url:"https://37b4c228.wurl.com/manifest/f36d25e7e52f1ba8d7e56eb859c636563214f541/UmFrdXRlblRWLWZyX0ZJRkFQbHVzRnJlbmNoX0hMUw/6f5437c5-e015-4754-8476-c8c6d27d3a55/1.m3u8"}]},
-  {id:3,name:"FIFA Plus 🇦🇷 Argentina",category:"Sports",logo:"https://i.ibb.co.com/vnbkF0r/fifa-world-cup-2026-logo-png-seeklogo-665644.png",servers:[{label:"Main",url:"https://6c849fb3.wurl.com/master/f36d25e7e52f1ba8d7e56eb859c636563214f541/TEctbXhfRklGQVBsdXNTcGFuaXNoLTFfSExT/playlist.m3u8"}]},
-  {id:4,name:"FIFA Plus 🇫🇷 France",category:"Sports",logo:"https://i.ibb.co.com/vnbkF0r/fifa-world-cup-2026-logo-png-seeklogo-665644.png",servers:[{label:"Main",url:"https://37b4c228.wurl.com/master/f36d25e7e52f1ba8d7e56eb859c636563214f541/UmFrdXRlblRWLWZyX0ZJRkFQbHVzRnJlbmNoX0hMUw/playlist.m3u8"}]},
-  {id:5,name:"FIFA Plus 🇩🇪 Germany",category:"Sports",logo:"https://i.ibb.co.com/vnbkF0r/fifa-world-cup-2026-logo-png-seeklogo-665644.png",servers:[{label:"Main",url:"https://4397879b.wurl.com/master/f36d25e7e52f1ba8d7e56eb859c636563214f541/UmFrdXRlblRWLWRlX0ZJRkFQbHVzR2VybWFuX0hMUw/playlist.m3u8"}]},
-  {id:6,name:"FIFA+ English",category:"FIFA World Cup",logo:"https://stream.codecloud.bd/uploads/logos/logo_6a291ae15b0af.png",servers:[{label:"Main",url:"https://a62dad94.wurl.com/master/f36d25e7e52f1ba8d7e56eb859c636563214f541/UmFrdXRlblRWLWV1X0ZJRkFQbHVzRW5nbGlzaF9ITFM/playlist.m3u8"}]},
-  {id:7,name:"FIFA Plus 🇮🇪 Italy",category:"Sports",logo:"https://i.ibb.co.com/vnbkF0r/fifa-world-cup-2026-logo-png-seeklogo-665644.png",servers:[{label:"Main",url:"https://5d95f7d7.wurl.com/master/f36d25e7e52f1ba8d7e56eb859c636563214f541/UmFrdXRlblRWLWl0X0ZJRkFQbHVzSXRhbGlhbl9ITFM/playlist.m3u8"}]},
-  {id:8,name:"Bein Sports XTRA",category:"FIFA World Cup",logo:"https://stream.codecloud.bd/uploads/logos/logo_6a291b7c07d04.jpeg",servers:[{label:"Main",url:"https://amg01334-amg01334c2-freelivesports-emea-6791.playouts.now.amagi.tv/playlist/amg01334-beinxtra-beinxtrausapp-freelivesportsemea/playlist.m3u8"},{label:"Backup",url:"https://bein-esp-xumo.amagi.tv/playlistR720P.m3u8"}]},
-  {id:9,name:"FIFA Plus 🇧🇷 Brazil",category:"Sports",logo:"https://i.ibb.co.com/vnbkF0r/fifa-world-cup-2026-logo-png-seeklogo-665644.png",servers:[{label:"Main",url:"https://e3be9ac5.wurl.com/master/f36d25e7e52f1ba8d7e56eb859c636563214f541/TEctYnJfRklGQVBsdXNQb3J0dWd1ZXNlX0hMUw/playlist.m3u8"}]},
-  {id:10,name:"Bein Sports 4",category:"FIFA World Cup",logo:"https://stream.codecloud.bd/uploads/logos/logo_6a291c462fb20.png",servers:[{label:"Main",url:"https://andro.226503.xyz/checklist/androstreamlivebs4.m3u8"}]},
-  {id:11,name:"FIFA Plus 🇪🇸 Spain",category:"Sports",logo:"https://i.ibb.co.com/vnbkF0r/fifa-world-cup-2026-logo-png-seeklogo-665644.png",servers:[{label:"Main",url:"https://d63fabad.wurl.com/master/f36d25e7e52f1ba8d7e56eb859c636563214f541/UmFrdXRlblRWLWVzX0ZJRkFQbHVzU3BhbmlzaF9ITFM/playlist.m3u8"}]},
-  {id:12,name:"Bein Sports 1",category:"FIFA World Cup",logo:"https://stream.codecloud.bd/uploads/logos/logo_6a2933e678d23.png",servers:[{label:"Main",url:"https://bein-esp-xumo.amagi.tv/playlistR1080p.m3u8"},{label:"Backup",url:"https://andro.226503.xyz/checklist/androstreamlivebs1.m3u8"}]},
-  {id:13,name:"FIFA Plus 🇺🇸 USA",category:"Sports",logo:"https://i.ibb.co.com/vnbkF0r/fifa-world-cup-2026-logo-png-seeklogo-665644.png",servers:[{label:"Main",url:"https://d2w9q46ikgrcwx.cloudfront.net/v1/master/3722c60a815c199d9c0ef36c5b73da68a62b09d1/cc-of5cbk3sav3w5/v1/sysdata_s_p_a_fifa_7/samsungheadend_us/latest/main/hls/playlist.m3u8"}]},
-  {id:14,name:"Somoy Tv",category:"Bangladesh",logo:"https://stream.codecloud.bd/uploads/logos/logo_6a2932675c162.png",servers:[{label:"Main",url:"https://tvsen6.aynaott.com/somoytv/index.m3u8?e=1779283766&u=78be6644-0a65-48ec-81a4-089ac65a2619&token=269246b8a31fb3a656624d71e10e447d"}]},
-  {id:15,name:"Fox Sports 2",category:"Sports",logo:"https://imglink.cc/cdn/o5BoWU_BEz.png",servers:[{label:"Main",url:"https://tvsen7.aynaott.com/foxsports2/index.m3u8?e=1779283790&u=78be6644-0a65-48ec-81a4-089ac65a2619&token=cbb7f40b4af7be51a91e0629a5ac7238"}]},
-  {id:16,name:"ESPN",category:"Sports",logo:"https://stream.codecloud.bd/uploads/logos/logo_6a29351ca6ed8.jpg",servers:[{label:"Main",url:"https://tvsen5.aynaott.com/espn/index.m3u8?e=1779283793&u=78be6644-0a65-48ec-81a4-089ac65a2619&token=cf2b4cb8b6c96ab86daee4299c792295"}]},
-  {id:17,name:"Tyc Sports Argentina",category:"Sports",logo:"https://imglink.cc/cdn/1oSRQnyUqK.jpg",servers:[{label:"Main",url:"https://amg26268-amg26268c14-freelivesports-emea-10267.playouts.now.amagi.tv/ts-us-e2-n2/playlist/amg26268-sportsstudio-tycsports-freelivesportsemea/playlist.m3u8"}]},
-  {id:18,name:"Ptv Sports",category:"Pakistan",logo:"https://stream.codecloud.bd/uploads/logos/logo_6a29d30717994.jpg",servers:[{label:"Main",url:"https://tvsen5.aynaott.com/PtvSports/index.m3u8"}]},
-  {id:19,name:"T Sports",category:"Bangladesh",logo:"https://stream.codecloud.bd/uploads/logos/logo_6a29d4a643b21.png",servers:[{label:"Main",url:"https://tvsen7.aynaott.com/tsports-hd/index.m3u8"}]},
-  {id:20,name:"BTV",category:"Bangladesh",logo:"https://stream.codecloud.bd/uploads/logos/logo_6a29d4df06b95.png",servers:[{label:"Main",url:"https://tvsen6.aynaott.com/btvhd/index.m3u8"}]},
-  {id:21,name:"BTV Bangladesh",category:"Sports",logo:"https://i.ibb.co.com/vnbkF0r/fifa-world-cup-2026-logo-png-seeklogo-665644.png",servers:[{label:"Main",url:"https://owrcovcrpy.gpcdn.net/bpk-tv/1709/output/index.m3u8"}]},
-  {id:22,name:"Star Sports 1",category:"Sports",logo:"https://imglink.cc/cdn/va7WOdXDQC.jpg",servers:[{label:"Main",url:"https://tvsen7.aynaott.com/sspts1/index.m3u8"}]},
-  {id:23,name:"Star Sports 1 B",category:"Sports",logo:"https://imglink.cc/cdn/va7WOdXDQC.jpg",servers:[{label:"Main",url:"https://tvsen7.aynaott.com/sspts1/tracks-v1a1/mono.ts.m3u8"}]},
-  {id:24,name:"Cricket Gold",category:"Sports",logo:"https://imglink.cc/cdn/HMfImxTUXS.jpg",servers:[{label:"Main",url:"https://streams2.sofast.tv/ptnr-yupptv/title-cricketgold/v1/manifest/611d79b11b77e2f571934fd80ca1413453772ac7/b2048bb8-1686-4432-aa50-647245383e0c/bfc6a36e-c250-4afe-b6c9-2bc57855bb7d/4.m3u8"}]},
-  {id:25,name:"TSN 1",category:"Sports",logo:"https://imglink.cc/cdn/u7SqaFacbH.png",servers:[{label:"Main",url:"https://tvsen7.aynaott.com/tsn1/index.m3u8"}]},
-  {id:26,name:"TSN 2",category:"Sports",logo:"https://imglink.cc/cdn/u7SqaFacbH.png",servers:[{label:"Main",url:"https://tvsen7.aynaott.com/tsn2/index.m3u8"}]},
-  {id:27,name:"TSN 3",category:"Sports",logo:"https://imglink.cc/cdn/u7SqaFacbH.png",servers:[{label:"Main",url:"https://tvsen7.aynaott.com/tsn3/index.m3u8"}]},
-  {id:28,name:"ASports",category:"Sports",logo:"https://imglink.cc/cdn/d4W6mvjalX.png",servers:[{label:"Main",url:"https://tvsen6.aynaott.com/asports/index.m3u8"}]},
-  {id:29,name:"Euro TV",category:"Sports",logo:"https://imglink.cc/cdn/SZphbKsSMx.png",servers:[{label:"Main",url:"https://stream.ottplus.bd/live/euro_sports_hd_abr/live/euro_sports_hd/chunks.m3u8"}]},
-  {id:30,name:"Star Jalsha",category:"Entertainment",logo:"https://imglink.cc/cdn/3TXPVSGzx5.png",servers:[{label:"Main",url:"https://yupptvcatchupire.yuppcdn.net/preview/starjalsha/1800.m3u8"}]},
-  {id:31,name:"G Series Drama",category:"Entertainment",logo:"https://imglink.cc/cdn/1_dUKmt1Oe.png",servers:[{label:"Main",url:"https://vods2.aynaott.com/gseriesDrama/tracks-v1a1/mono.ts.m3u8"}]},
-  {id:32,name:"SRK Tv",category:"Entertainment",logo:"https://imglink.cc/cdn/uZtiXpPz29.png",servers:[{label:"Main",url:"https://srknowapp.ncare.live/srktvhlswodrm/srktv.stream/playlist.m3u8"}]},
-  {id:33,name:"Goldmines",category:"Movies",logo:"https://imglink.cc/cdn/E86bN6IAxl.jpg",servers:[{label:"Main",url:"https://cdn-2.pishow.tv/live/1459/master.m3u8"}]},
-  {id:34,name:"Goldmines Movies",category:"Movies",logo:"https://imglink.cc/cdn/E86bN6IAxl.jpg",servers:[{label:"Main",url:"https://cdn-2.pishow.tv/live/1461/master.m3u8"}]},
-  {id:35,name:"Goldmines Bollywood",category:"Movies",logo:"https://imglink.cc/cdn/E86bN6IAxl.jpg",servers:[{label:"Main",url:"https://tvsen6.aynaott.com/GoldminesBollywood/index.m3u8"}]},
-  {id:36,name:"Hindi Classic 24",category:"Movies",logo:"https://imglink.cc/cdn/cScI5tEUjV.png",servers:[{label:"Main",url:"https://vods2.aynaott.com/hindimovies/index.m3u8"}]},
-  {id:37,name:"South India Movie",category:"Movies",logo:"https://imglink.cc/cdn/cScI5tEUjV.png",servers:[{label:"Main",url:"https://live20.bozztv.com/giatvplayout7/giatv-209593/tracks-v1a1/mono.ts.m3u8"}]},
-  {id:38,name:"B4U Movies",category:"Movies",logo:"https://imglink.cc/cdn/cScI5tEUjV.png",servers:[{label:"Main",url:"https://amg00877-b4unew-amg00877c2-xiaomi-in-5489.playouts.now.amagi.tv/playlist.m3u8"}]},
-  {id:39,name:"Action Hollywood",category:"Movies",logo:"https://imglink.cc/cdn/cScI5tEUjV.png",servers:[{label:"Main",url:"https://cdn-apse1-prod.tsv2.amagi.tv/linear/amg01076-lightningintern-actionhollywood-samsungnz/playlist.m3u8"}]},
-  {id:40,name:"9X Tashan",category:"Music",logo:"https://imglink.cc/cdn/IYDn_LwwiV.png",servers:[{label:"Main",url:"https://wiselp.wiseplayout.com/9X_Tashan/master.m3u8"}]},
-  {id:41,name:"9X Jalwa",category:"Music",logo:"https://imglink.cc/cdn/IYDn_LwwiV.png",servers:[{label:"Main",url:"https://wiselp.wiseplayout.com/9X_Jalwa/master.m3u8"}]},
-  {id:42,name:"9X Jhakaas",category:"Music",logo:"https://imglink.cc/cdn/IYDn_LwwiV.png",servers:[{label:"Main",url:"https://wiselp.wiseplayout.com/9X_Jhakaas/master.m3u8"}]},
-  {id:43,name:"Bengali Beat",category:"Music",logo:"https://imglink.cc/cdn/IYDn_LwwiV.png",servers:[{label:"Main",url:"https://tplay.live/originals/bengali-beats/index.m3u8"}]},
-  {id:44,name:"Party Universe",category:"Music",logo:"https://imglink.cc/cdn/IYDn_LwwiV.png",servers:[{label:"Main",url:"https://nomawnoijl.gpcdn.net/akash/partyuniverse/chunks.m3u8"}]},
-  {id:45,name:"Motu Patlu",category:"Cartoon",logo:"https://imglink.cc/cdn/TxPUulKGQh.jpg",servers:[{label:"Main",url:"https://live20.bozztv.com/giatvplayout7/giatv-209622/tracks-v1a1/mono.ts.m3u8"}]},
-  {id:46,name:"Tom & Jerry TV",category:"Cartoon",logo:"https://imglink.cc/cdn/YkXRQgC4-_.jpg",servers:[{label:"Main",url:"https://live20.bozztv.com/giatvplayout7/giatv-208314/tracks-v1a1/mono.ts.m3u8"}]},
-  {id:47,name:"Bantul The Great",category:"Cartoon",logo:"https://imglink.cc/cdn/_OIh6UYTpa.jpg",servers:[{label:"Main",url:"https://live20.bozztv.com/giatvplayout7/giatv-209869/tracks-v1a1/mono.ts.m3u8"}]},
-  {id:48,name:"Doraemon TV",category:"Cartoon",logo:"https://imglink.cc/cdn/rmNeL8f6NR.png",servers:[{label:"Main",url:"https://live20.bozztv.com/giatvplayout7/giatv-209902/tracks-v1a1/mono.ts.m3u8"}]},
-  {id:49,name:"Oggy and the Cockroaches",category:"Cartoon",logo:"https://imglink.cc/cdn/cZxNWhHkaZ.jpg",servers:[{label:"Main",url:"https://live20.bozztv.com/giatvplayout7/giatv-210728/tracks-v1a1/mono.ts.m3u8"}]},
-  {id:50,name:"Mr Bean Animated",category:"Cartoon",logo:"https://i.ibb.co.com/XfqV4B56/png-transparent-mr-bean-illustration-youtube-coloring-book-character-cartoon-mr-bean-television-chil.png",servers:[{label:"Main",url:"https://amg00627-amg00627c29-rakuten-it-3989.playouts.now.amagi.tv/playlist/amg00627-banijayfast-mrbeanitcc-rakutenit/playlist.m3u8"}]},
-  {id:51,name:"Cartoon Network",category:"Cartoon",logo:"https://imglink.cc/cdn/48br-Lpr61.png",servers:[{label:"Main",url:"https://tvsen5.aynaott.com/cartoonnetwork/tracks-v1a1/mono.ts.m3u8"}]},
-  {id:52,name:"Gopal Bhar TV",category:"Cartoon",logo:"https://i.ibb.co.com/5xSF5mzh/Gopal-Bhar-animated-TV-series-title-card.jpg",servers:[{label:"Main",url:"https://live20.bozztv.com/giatvplayout7/giatv-209611/tracks-v1a1/mono.ts.m3u8"}]},
-  {id:53,name:"Duronto Live",category:"Cartoon",logo:"https://i.ibb.co.com/Ld3Yw0PH/Duronto-TV.png",servers:[{label:"Main",url:"https://tvsen6.aynaott.com/durontotv-live/index.m3u8"}]},
-  {id:54,name:"ATN News HD",category:"Bangladesh",logo:"https://upload.wikimedia.org/wikipedia/commons/thumb/4/4b/ATN_News_logo.svg/1280px-ATN_News_logo.svg.png",servers:[{label:"Main",url:"https://tvsen5.aynaott.com/atnbangla/index.m3u8"}]},
-  {id:55,name:"Ayna TV",category:"Bangladesh",logo:"https://i.ibb.co.com/5hy7S3wB/Ayna-TV.png",servers:[{label:"Main",url:"https://app24.jagobd.com.bd/c3VydmVyX8RpbEU9Mi8xNy8yMFDEEHGcfRgzQ6NTAgdEoaeFzbF92YWxIZTO0U0ezN1IzMyfvcEdsEfeDeKiNkVN3PTOmdFseWRtaW51aiPhnPTI2/ayna.stream/tracks-v1a1/mono.m3u8"}]},
-  {id:56,name:"Ananda TV",category:"Bangladesh",logo:"https://imglink.cc/cdn/ofOLQDCLwk.png",servers:[{label:"Main",url:"https://tvsen6.aynaott.com/anandatv/index.m3u8"}]},
-  {id:57,name:"Bangla Vision",category:"Bangladesh",logo:"https://i.ibb.co.com/5X1JmFbF/Bangla-Vision.png",servers:[{label:"Main",url:"https://owrcovcrpy.gpcdn.net/bpk-tv/1715/output/1715-audio_113452_eng=113200-video=1181200.m3u8"}]},
-  {id:58,name:"Bijoy TV",category:"Bangladesh",logo:"https://i.ibb.co.com/DP1GSwB3/Bijoy-TV.png",servers:[{label:"Main",url:"https://tvsen6.aynaott.com/bijoytv/index.m3u8"}]},
-  {id:59,name:"Boishakhi TV",category:"Bangladesh",logo:"https://i.ibb.co.com/sptqqqj9/Boishakhi-TV.png",servers:[{label:"Main",url:"https://tvsen6.aynaott.com/boishakhitv/index.m3u8"}]},
-  {id:60,name:"Bangla Tv",category:"Bangladesh",logo:"https://imglink.cc/cdn/YQ8D9Wf0IT.png",servers:[{label:"Main",url:"https://tvsen6.aynaott.com/banglatv/index.m3u8"}]},
-  {id:61,name:"Channel I",category:"Bangladesh",logo:"https://imglink.cc/cdn/H038J5LwdN.png",servers:[{label:"Main",url:"https://tvsen6.aynaott.com/channeli/index.m3u8"}]},
-  {id:62,name:"Channel 1 TV",category:"Bangladesh",logo:"https://i.ibb.co.com/N6HbH5rH/Channel-One-TV.png",servers:[{label:"Main",url:"https://app24.jagobd.com.bd/c3VydmVyX8RpbEU9Mi8xNy8yMFDEEHGcfRgzQ6NTAgdEoaeFzbF92YWxIZTO0U0ezN1IzMyfvcEdsEfeDeKiNkVN3PTOmdFseWRtaW51aiPhnPTI2/channel1bd.stream/tracks-v1a1/mono.m3u8"}]},
-  {id:63,name:"Channel 24",category:"Bangladesh",logo:"https://i.ibb.co.com/v65cfQ96/Channel-24.png",servers:[{label:"Main",url:"https://owrcovcrpy.gpcdn.net/bpk-tv/1703/output/1703-audio_113332_eng=113200-video=2202800.m3u8"}]},
-  {id:64,name:"Channel 9 HD",category:"Bangladesh",logo:"https://i.ibb.co.com/Xxrdnxkp/Channel9-HD.png",servers:[{label:"Main",url:"https://owrcovcrpy.gpcdn.net/bpk-tv/1729/output/1729-audio_113592_eng=113200-video=1181200.m3u8"}]},
-  {id:65,name:"Channel S TV",category:"Bangladesh",logo:"https://i.ibb.co.com/Vp2HKT0s/Channel-S-TV.png",servers:[{label:"Main",url:"https://app.ncare.live/live-orgin/channels.stream/live-orgin/channels.stream/chunks.m3u8"}]},
-  {id:66,name:"DBC News",category:"Bangladesh",logo:"https://i.ibb.co.com/TMKLMXs9/DBC-News.png",servers:[{label:"Main",url:"https://owrcovcrpy.gpcdn.net/bpk-tv/1728/output/index.m3u8"}]},
-  {id:67,name:"Deepto TV",category:"Bangladesh",logo:"https://imglink.cc/cdn/2ODX-FAGY4.png",servers:[{label:"Main",url:"https://byphdgllyk.gpcdn.net/hls/deeptotv/0_1/index.m3u8"}]},
-  {id:68,name:"Desh TV",category:"Bangladesh",logo:"https://i.ibb.co.com/fVH9h8Tk/Desh-TV.png",servers:[{label:"Main",url:"https://tvsen6.aynaott.com/deshtv/tracks-v1a1/mono.ts.m3u8"}]},
-  {id:69,name:"Ekhon TV",category:"Bangladesh",logo:"https://i.ibb.co.com/YrDVpDt/Ekhon-Tv.png",servers:[{label:"Main",url:"https://tvsen6.aynaott.com/ekhontv/tracks-v1a1/mono.ts.m3u8"}]},
-  {id:70,name:"Ekattor TV HD",category:"Bangladesh",logo:"https://i.ibb.co.com/DPZrfqzr/Ekattor-TV-HD.png",servers:[{label:"Main",url:"https://owrcovcrpy.gpcdn.net/bpk-tv/1705/output/1705.m3u8"}]},
-  {id:71,name:"Ekushe TV",category:"Bangladesh",logo:"https://i.ibb.co.com/Myscx0rx/Ekushe-TV.png",servers:[{label:"Main",url:"https://tvsen6.aynaott.com/etv/tracks-v1a1/mono.ts.m3u8"}]},
-  {id:72,name:"Global TV",category:"Bangladesh",logo:"https://i.ibb.co.com/Q7Q7X64N/Global-TV.png",servers:[{label:"Main",url:"https://app24.jagobd.com.bd/c3VydmVyX8RpbEU9Mi8xNy8yMFDEEHGcfRgzQ6NTAgdEoaeFzbF92YWxIZTO0U0ezN1IzMyfvcEdsEfeDeKiNkVN3PTOmdFseWRtaW51aiPhnPTI2/Global-tv.stream/tracks-v1a1/mono.m3u8"}]},
-  {id:73,name:"GTV",category:"Bangladesh",logo:"https://i.ibb.co.com/cc5rftrN/Gazi-TV.png",servers:[{label:"Main",url:"https://app24.jagobd.com.bd/c3VydmVyX8RpbEU9Mi8xNy8yMFDEEHGcfRgzQ6NTAgdEoaeFzbF92YWxIZTO0U0ezN1IzMyfvcEdsEfeDeKiNkVN3PTOmdFseWRtaW51aiPhnPTI2/gazibdz.stream/tracks-v1a1/mono.m3u8"}]},
-  {id:74,name:"Independent TV",category:"Bangladesh",logo:"https://e7.pngegg.com/pngimages/500/179/png-clipart-bangladesh-logo-independent-television-television-channel-bd-logo-television-text-thumbnail.png",servers:[{label:"Main",url:"https://tvsen6.aynaott.com/independenttv/tracks-v1a1/mono.ts.m3u8"}]},
-  {id:75,name:"Jago News 24",category:"Bangladesh",logo:"https://i.ibb.co.com/KpRt3cT5/Jago-News-24.png",servers:[{label:"Main",url:"https://app.ncare.live/live-orgin/jagonews24.stream/live-orgin/jagonews24.stream/chunks.m3u8"}]},
-  {id:76,name:"Jamuna TV",category:"Bangladesh",logo:"https://www.jamuna.tv/uploads/settings/default_img_1.jpg",servers:[{label:"Main",url:"https://tvsen6.aynaott.com/jamunatv/index.m3u8"}]},
-  {id:77,name:"Maasranga TV",category:"Bangladesh",logo:"https://i.ibb.co.com/S7c6STRZ/Maasranga-TV.png",servers:[{label:"Main",url:"https://owrcovcrpy.gpcdn.net/bpk-tv/1722/output/1722.m3u8"}]},
-  {id:78,name:"Mohona TV",category:"Bangladesh",logo:"https://i.ibb.co.com/Ndvm37Vr/Mohona-TV.png",servers:[{label:"Main",url:"https://app24.jagobd.com.bd/c3VydmVyX8RpbEU9Mi8xNy8yMFDEEHGcfRgzQ6NTAgdEoaeFzbF92YWxIZTO0U0ezN1IzMyfvcEdsEfeDeKiNkVN3PTOmdFseWRtaW51aiPhnPTI2/mohonatv.stream/tracks-v1a1/mono.m3u8"}]},
-  {id:79,name:"My Tv",category:"Bangladesh",logo:"https://imglink.cc/cdn/7T2-k2SePa.png",servers:[{label:"Main",url:"https://tvsen6.aynaott.com/mytv/index.m3u8"}]},
-  {id:80,name:"Nexus TV",category:"Bangladesh",logo:"https://i.ibb.co.com/d0hw38JN/Nexus-TV.png",servers:[{label:"Main",url:"https://tvsen6.aynaott.com/nexustv/tracks-v1a1/mono.ts.m3u8"}]},
-  {id:81,name:"News 24",category:"Bangladesh",logo:"https://i.ibb.co.com/gLx9fX5N/News-24.png",servers:[{label:"Main",url:"https://owrcovcrpy.gpcdn.net/bpk-tv/1708/output/index.m3u8"}]},
-  {id:82,name:"NTV",category:"Bangladesh",logo:"https://imglink.cc/cdn/D8KxMc9soN.png",servers:[{label:"Main",url:"https://owrcovcrpy.gpcdn.net/bpk-tv/1716/output/1716-audio_113462_eng=113200-video=1181200.m3u8"}]},
-  {id:83,name:"RTV Live",category:"Bangladesh",logo:"https://imglink.cc/cdn/JZnibxXLfK.png",servers:[{label:"Main",url:"https://tvsen6.aynaott.com/rtv/tracks-v1a1/mono.ts.m3u8"}]},
-  {id:84,name:"Star News",category:"Bangladesh",logo:"https://i.ibb.co.com/cXTjmmtP/Star-News.png",servers:[{label:"Main",url:"https://owrcovcrpy.gpcdn.net/bpk-tv/1710/output/1710-audio_113402_eng=113200-video=1181200.m3u8"}]},
-  {id:85,name:"SA Tv",category:"Bangladesh",logo:"https://imglink.cc/cdn/qx2W3uKGsz.png",servers:[{label:"Main",url:"https://tvsen6.aynaott.com/satv/index.m3u8"}]},
-  {id:86,name:"Thikana",category:"Bangladesh",logo:"https://imglink.cc/cdn/rw8iAU9ZcB.jpg",servers:[{label:"Main",url:"https://5dd3981940faa.streamlock.net:443/thikanatv/thikanatv/playlist.m3u8"}]},
-  {id:87,name:"Republic Bangla",category:"News",logo:"https://imglink.cc/cdn/ndYg8AR85Y.jpg",servers:[{label:"Main",url:"https://vg-republictvlive.akamaized.net/v1/manifest/611d79b11b77e2f571934fd80ca1413453772ac7/vglive-sk-456368/06e5afc2-a022-4e51-9131-4e33a6207c5c/1.m3u8"}]},
-  {id:88,name:"Wild Earth",category:"Documentary",logo:"https://imglink.cc/cdn/eEZmseF3Tb.jpg",servers:[{label:"Main",url:"https://wildearth-plex.amagi.tv/master.m3u8"}]},
-  {id:89,name:"Animal Planet",category:"Documentary",logo:"https://imglink.cc/cdn/ebC033LNf2.png",servers:[{label:"Main",url:"https://tiger-hub.vercel.app@vodzong.mjunoon.tv:8087/streamtest/Animal-Planet-158-3/playlist.m3u8"}]}
+  {id:1,name:"Caze Tv Brazil",category:"FIFA World Cup",logo:"https://stream.codecloud.bd/uploads/logos/logo_6a2916d039dd9.png",servers:[{label:"Main",url:"https://dfr80qz435crc.cloudfront.net/MNOP/Amagi/Caze/Caze_TV_BR/1080p-vtt/index.m3u8"}]},{id:2,name:"FIFA Plus B 🏆",category:"Sports",logo:"https://i.ibb.co.com/vnbkF0r/fifa-world-cup-2026-logo-png-seeklogo-665644.png",servers:[{label:"Server 1",url:"https://37b4c228.wurl.com/manifest/f36d25e7e52f1ba8d7e56eb859c636563214f541/UmFrdXRlblRWLWZyX0ZJRkFQbHVzRnJlbmNoX0hMUw/6f5437c5-e015-4754-8476-c8c6d27d3a55/1.m3u8"}]},{id:3,name:"FIFA Plus 🇦🇷 Argentina",category:"Sports",logo:"https://i.ibb.co.com/vnbkF0r/fifa-world-cup-2026-logo-png-seeklogo-665644.png",servers:[{label:"Main",url:"https://6c849fb3.wurl.com/master/f36d25e7e52f1ba8d7e56eb859c636563214f541/TEctbXhfRklGQVBsdXNTcGFuaXNoLTFfSExT/playlist.m3u8"}]},{id:4,name:"FIFA Plus 🇫🇷 France",category:"Sports",logo:"https://i.ibb.co.com/vnbkF0r/fifa-world-cup-2026-logo-png-seeklogo-665644.png",servers:[{label:"Main",url:"https://37b4c228.wurl.com/master/f36d25e7e52f1ba8d7e56eb859c636563214f541/UmFrdXRlblRWLWZyX0ZJRkFQbHVzRnJlbmNoX0hMUw/playlist.m3u8"}]},{id:5,name:"FIFA Plus 🇩🇪 Germany",category:"Sports",logo:"https://i.ibb.co.com/vnbkF0r/fifa-world-cup-2026-logo-png-seeklogo-665644.png",servers:[{label:"Main",url:"https://4397879b.wurl.com/master/f36d25e7e52f1ba8d7e56eb859c636563214f541/UmFrdXRlblRWLWRlX0ZJRkFQbHVzR2VybWFuX0hMUw/playlist.m3u8"}]},{id:6,name:"FIFA+ English",category:"FIFA World Cup",logo:"https://stream.codecloud.bd/uploads/logos/logo_6a291ae15b0af.png",servers:[{label:"Main",url:"https://a62dad94.wurl.com/master/f36d25e7e52f1ba8d7e56eb859c636563214f541/UmFrdXRlblRWLWV1X0ZJRkFQbHVzRW5nbGlzaF9ITFM/playlist.m3u8"}]},{id:7,name:"FIFA Plus 🇮🇪 Italy",category:"Sports",logo:"https://i.ibb.co.com/vnbkF0r/fifa-world-cup-2026-logo-png-seeklogo-665644.png",servers:[{label:"Main",url:"https://5d95f7d7.wurl.com/master/f36d25e7e52f1ba8d7e56eb859c636563214f541/UmFrdXRlblRWLWl0X0ZJRkFQbHVzSXRhbGlhbl9ITFM/playlist.m3u8"}]},{id:8,name:"Bein Sports XTRA",category:"FIFA World Cup",logo:"https://stream.codecloud.bd/uploads/logos/logo_6a291b7c07d04.jpeg",servers:[{label:"Main",url:"https://amg01334-amg01334c2-freelivesports-emea-6791.playouts.now.amagi.tv/playlist/amg01334-beinxtra-beinxtrausapp-freelivesportsemea/playlist.m3u8"},{label:"Backup",url:"https://bein-esp-xumo.amagi.tv/playlistR720P.m3u8"}]},{id:9,name:"FIFA Plus 🇧🇷 Brazil",category:"Sports",logo:"https://i.ibb.co.com/vnbkF0r/fifa-world-cup-2026-logo-png-seeklogo-665644.png",servers:[{label:"Main",url:"https://e3be9ac5.wurl.com/master/f36d25e7e52f1ba8d7e56eb859c636563214f541/TEctYnJfRklGQVBsdXNQb3J0dWd1ZXNlX0hMUw/playlist.m3u8"}]},{id:10,name:"Bein Sports 4",category:"FIFA World Cup",logo:"https://stream.codecloud.bd/uploads/logos/logo_6a291c462fb20.png",servers:[{label:"Main",url:"https://andro.226503.xyz/checklist/androstreamlivebs4.m3u8"}]},{id:11,name:"FIFA Plus 🇪🇸 Spain",category:"Sports",logo:"https://i.ibb.co.com/vnbkF0r/fifa-world-cup-2026-logo-png-seeklogo-665644.png",servers:[{label:"Main",url:"https://d63fabad.wurl.com/master/f36d25e7e52f1ba8d7e56eb859c636563214f541/UmFrdXRlblRWLWVzX0ZJRkFQbHVzU3BhbmlzaF9ITFM/playlist.m3u8"}]},{id:12,name:"Bein Sports 1",category:"FIFA World Cup",logo:"https://stream.codecloud.bd/uploads/logos/logo_6a2933e678d23.png",servers:[{label:"Main",url:"https://bein-esp-xumo.amagi.tv/playlistR1080p.m3u8"},{label:"Backup",url:"https://andro.226503.xyz/checklist/androstreamlivebs1.m3u8"}]},{id:13,name:"FIFA Plus 🇺🇸 USA",category:"Sports",logo:"https://i.ibb.co.com/vnbkF0r/fifa-world-cup-2026-logo-png-seeklogo-665644.png",servers:[{label:"Main",url:"https://d2w9q46ikgrcwx.cloudfront.net/v1/master/3722c60a815c199d9c0ef36c5b73da68a62b09d1/cc-of5cbk3sav3w5/v1/sysdata_s_p_a_fifa_7/samsungheadend_us/latest/main/hls/playlist.m3u8"}]},{id:14,name:"Somoy Tv",category:"Bangladesh",logo:"https://stream.codecloud.bd/uploads/logos/logo_6a2932675c162.png",servers:[{label:"Main",url:"https://tvsen6.aynaott.com/somoytv/index.m3u8?e=1779283766&u=78be6644-0a65-48ec-81a4-089ac65a2619&token=269246b8a31fb3a656624d71e10e447d"}]},{id:15,name:"Fox Sports 2",category:"Sports",logo:"https://imglink.cc/cdn/o5BoWU_BEz.png",servers:[{label:"Main",url:"https://tvsen7.aynaott.com/foxsports2/index.m3u8?e=1779283790&u=78be6644-0a65-48ec-81a4-089ac65a2619&token=cbb7f40b4af7be51a91e0629a5ac7238"}]},{id:16,name:"ESPN",category:"Sports",logo:"https://stream.codecloud.bd/uploads/logos/logo_6a29351ca6ed8.jpg",servers:[{label:"Main",url:"https://tvsen5.aynaott.com/espn/index.m3u8?e=1779283793&u=78be6644-0a65-48ec-81a4-089ac65a2619&token=cf2b4cb8b6c96ab86daee4299c792295"}]},{id:17,name:"Tyc Sports Argentina",category:"Sports",logo:"https://imglink.cc/cdn/1oSRQnyUqK.jpg",servers:[{label:"Main",url:"https://amg26268-amg26268c14-freelivesports-emea-10267.playouts.now.amagi.tv/ts-us-e2-n2/playlist/amg26268-sportsstudio-tycsports-freelivesportsemea/playlist.m3u8"}]},{id:18,name:"Ptv Sports",category:"Pakistan",logo:"https://stream.codecloud.bd/uploads/logos/logo_6a29d30717994.jpg",servers:[{label:"Main",url:"https://tvsen5.aynaott.com/PtvSports/index.m3u8"}]},{id:19,name:"T Sports",category:"Bangladesh",logo:"https://stream.codecloud.bd/uploads/logos/logo_6a29d4a643b21.png",servers:[{label:"Main",url:"https://tvsen7.aynaott.com/tsports-hd/index.m3u8"},{label:"SD (Light)",url:"https://tvsen7.aynaott.com/tsports-hd/index.m3u8?quality=low"}]},{id:20,name:"BTV",category:"Bangladesh",logo:"https://stream.codecloud.bd/uploads/logos/logo_6a29d4df06b95.png",servers:[{label:"Main",url:"https://tvsen6.aynaott.com/btvhd/index.m3u8"}]},
+  {id:21,name:"BTV Bangladesh",category:"Sports",logo:"https://i.ibb.co.com/vnbkF0r/fifa-world-cup-2026-logo-png-seeklogo-665644.png",servers:[{label:"Main",url:"https://owrcovcrpy.gpcdn.net/bpk-tv/1709/output/index.m3u8"}]},{id:22,name:"Star Sports 1",category:"Sports",logo:"https://imglink.cc/cdn/va7WOdXDQC.jpg",servers:[{label:"Main",url:"https://tvsen7.aynaott.com/sspts1/index.m3u8"}]},{id:23,name:"Star Sports 1 B",category:"Sports",logo:"https://imglink.cc/cdn/va7WOdXDQC.jpg",servers:[{label:"Main",url:"https://tvsen7.aynaott.com/sspts1/tracks-v1a1/mono.ts.m3u8"}]},{id:24,name:"Cricket Gold",category:"Sports",logo:"https://imglink.cc/cdn/HMfImxTUXS.jpg",servers:[{label:"Main",url:"https://streams2.sofast.tv/ptnr-yupptv/title-cricketgold/v1/manifest/611d79b11b77e2f571934fd80ca1413453772ac7/b2048bb8-1686-4432-aa50-647245383e0c/bfc6a36e-c250-4afe-b6c9-2bc57855bb7d/4.m3u8"}]},{id:25,name:"TSN 1",category:"Sports",logo:"https://imglink.cc/cdn/u7SqaFacbH.png",servers:[{label:"Main",url:"https://tvsen7.aynaott.com/tsn1/index.m3u8"}]},{id:26,name:"TSN 2",category:"Sports",logo:"https://imglink.cc/cdn/u7SqaFacbH.png",servers:[{label:"Main",url:"https://tvsen7.aynaott.com/tsn2/index.m3u8"}]},{id:27,name:"TSN 3",category:"Sports",logo:"https://imglink.cc/cdn/u7SqaFacbH.png",servers:[{label:"Main",url:"https://tvsen7.aynaott.com/tsn3/index.m3u8"}]},{id:28,name:"ASports",category:"Sports",logo:"https://imglink.cc/cdn/d4W6mvjalX.png",servers:[{label:"Main",url:"https://tvsen6.aynaott.com/asports/index.m3u8"}]},{id:29,name:"Euro TV",category:"Sports",logo:"https://imglink.cc/cdn/SZphbKsSMx.png",servers:[{label:"Main",url:"https://stream.ottplus.bd/live/euro_sports_hd_abr/live/euro_sports_hd/chunks.m3u8"}]},{id:30,name:"Star Jalsha",category:"Entertainment",logo:"https://imglink.cc/cdn/3TXPVSGzx5.png",servers:[{label:"Main",url:"https://yupptvcatchupire.yuppcdn.net/preview/starjalsha/1800.m3u8"}]},{id:31,name:"G Series Drama",category:"Entertainment",logo:"https://imglink.cc/cdn/1_dUKmt1Oe.png",servers:[{label:"Main",url:"https://vods2.aynaott.com/gseriesDrama/tracks-v1a1/mono.ts.m3u8"}]},{id:32,name:"SRK Tv",category:"Entertainment",logo:"https://imglink.cc/cdn/uZtiXpPz29.png",servers:[{label:"Main",url:"https://srknowapp.ncare.live/srktvhlswodrm/srktv.stream/playlist.m3u8"}]},{id:33,name:"Goldmines",category:"Movies",logo:"https://imglink.cc/cdn/E86bN6IAxl.jpg",servers:[{label:"Main",url:"https://cdn-2.pishow.tv/live/1459/master.m3u8"}]},{id:34,name:"Goldmines Movies",category:"Movies",logo:"https://imglink.cc/cdn/E86bN6IAxl.jpg",servers:[{label:"Main",url:"https://cdn-2.pishow.tv/live/1461/master.m3u8"}]},{id:35,name:"Goldmines Bollywood",category:"Movies",logo:"https://imglink.cc/cdn/E86bN6IAxl.jpg",servers:[{label:"Main",url:"https://tvsen6.aynaott.com/GoldminesBollywood/index.m3u8"}]},{id:36,name:"Hindi Classic 24",category:"Movies",logo:"https://imglink.cc/cdn/cScI5tEUjV.png",servers:[{label:"Main",url:"https://vods2.aynaott.com/hindimovies/index.m3u8"}]},{id:37,name:"South India Movie",category:"Movies",logo:"https://imglink.cc/cdn/cScI5tEUjV.png",servers:[{label:"Main",url:"https://live20.bozztv.com/giatvplayout7/giatv-209593/tracks-v1a1/mono.ts.m3u8"}]},{id:38,name:"B4U Movies",category:"Movies",logo:"https://imglink.cc/cdn/cScI5tEUjV.png",servers:[{label:"Main",url:"https://amg00877-b4unew-amg00877c2-xiaomi-in-5489.playouts.now.amagi.tv/playlist.m3u8"}]},{id:39,name:"Action Hollywood",category:"Movies",logo:"https://imglink.cc/cdn/cScI5tEUjV.png",servers:[{label:"Main",url:"https://cdn-apse1-prod.tsv2.amagi.tv/linear/amg01076-lightningintern-actionhollywood-samsungnz/playlist.m3u8"}]},{id:40,name:"9X Tashan",category:"Music",logo:"https://imglink.cc/cdn/IYDn_LwwiV.png",servers:[{label:"Main",url:"https://wiselp.wiseplayout.com/9X_Tashan/master.m3u8"}]},{id:41,name:"9X Jalwa",category:"Music",logo:"https://imglink.cc/cdn/IYDn_LwwiV.png",servers:[{label:"Main",url:"https://wiselp.wiseplayout.com/9X_Jalwa/master.m3u8"}]},{id:42,name:"9X Jhakaas",category:"Music",logo:"https://imglink.cc/cdn/IYDn_LwwiV.png",servers:[{label:"Main",url:"https://wiselp.wiseplayout.com/9X_Jhakaas/master.m3u8"}]},{id:43,name:"Bengali Beat",category:"Music",logo:"https://imglink.cc/cdn/IYDn_LwwiV.png",servers:[{label:"Main",url:"https://tplay.live/originals/bengali-beats/index.m3u8"}]},{id:44,name:"Party Universe",category:"Music",logo:"https://imglink.cc/cdn/IYDn_LwwiV.png",servers:[{label:"Main",url:"https://nomawnoijl.gpcdn.net/akash/partyuniverse/chunks.m3u8"}]},{id:45,name:"Motu Patlu",category:"Cartoon",logo:"https://imglink.cc/cdn/TxPUulKGQh.jpg",servers:[{label:"Main",url:"https://live20.bozztv.com/giatvplayout7/giatv-209622/tracks-v1a1/mono.ts.m3u8"}]},{id:46,name:"Tom & Jerry TV",category:"Cartoon",logo:"https://imglink.cc/cdn/YkXRQgC4-_.jpg",servers:[{label:"Main",url:"https://live20.bozztv.com/giatvplayout7/giatv-208314/tracks-v1a1/mono.ts.m3u8"}]},{id:47,name:"Bantul The Great",category:"Cartoon",logo:"https://imglink.cc/cdn/_OIh6UYTpa.jpg",servers:[{label:"Main",url:"https://live20.bozztv.com/giatvplayout7/giatv-209869/tracks-v1a1/mono.ts.m3u8"}]},{id:48,name:"Doraemon TV",category:"Cartoon",logo:"https://imglink.cc/cdn/rmNeL8f6NR.png",servers:[{label:"Main",url:"https://live20.bozztv.com/giatvplayout7/giatv-209902/tracks-v1a1/mono.ts.m3u8"}]},{id:49,name:"Oggy and the Cockroaches",category:"Cartoon",logo:"https://imglink.cc/cdn/cZxNWhHkaZ.jpg",servers:[{label:"Main",url:"https://live20.bozztv.com/giatvplayout7/giatv-210728/tracks-v1a1/mono.ts.m3u8"}]},{id:50,name:"Mr Bean Animated",category:"Cartoon",logo:"https://i.ibb.co.com/XfqV4B56/png-transparent-mr-bean-illustration-youtube-coloring-book-character-cartoon-mr-bean-television-chil.png",servers:[{label:"Main",url:"https://amg00627-amg00627c29-rakuten-it-3989.playouts.now.amagi.tv/playlist/amg00627-banijayfast-mrbeanitcc-rakutenit/playlist.m3u8"}]},{id:51,name:"Cartoon Network",category:"Cartoon",logo:"https://imglink.cc/cdn/48br-Lpr61.png",servers:[{label:"Main",url:"https://tvsen5.aynaott.com/cartoonnetwork/tracks-v1a1/mono.ts.m3u8"}]},{id:52,name:"Gopal Bhar TV",category:"Cartoon",logo:"https://i.ibb.co.com/5xSF5mzh/Gopal-Bhar-animated-TV-series-title-card.jpg",servers:[{label:"Main",url:"https://live20.bozztv.com/giatvplayout7/giatv-209611/tracks-v1a1/mono.ts.m3u8"}]},{id:53,name:"Duronto Live",category:"Cartoon",logo:"https://i.ibb.co.com/Ld3Yw0PH/Duronto-TV.png",servers:[{label:"Main",url:"https://tvsen6.aynaott.com/durontotv-live/index.m3u8"}]},{id:54,name:"ATN News HD",category:"Bangladesh",logo:"https://upload.wikimedia.org/wikipedia/commons/thumb/4/4b/ATN_News_logo.svg/1280px-ATN_News_logo.svg.png",servers:[{label:"Main",url:"https://tvsen5.aynaott.com/atnbangla/index.m3u8"}]},{id:55,name:"Ayna TV",category:"Bangladesh",logo:"https://i.ibb.co.com/5hy7S3wB/Ayna-TV.png",servers:[{label:"Main",url:"https://app24.jagobd.com.bd/c3VydmVyX8RpbEU9Mi8xNy8yMFDEEHGcfRgzQ6NTAgdEoaeFzbF92YWxIZTO0U0ezN1IzMyfvcEdsEfeDeKiNkVN3PTOmdFseWRtaW51aiPhnPTI2/ayna.stream/tracks-v1a1/mono.m3u8"}]},{id:56,name:"Ananda TV",category:"Bangladesh",logo:"https://imglink.cc/cdn/ofOLQDCLwk.png",servers:[{label:"Main",url:"https://tvsen6.aynaott.com/anandatv/index.m3u8"}]},{id:57,name:"Bangla Vision",category:"Bangladesh",logo:"https://i.ibb.co.com/5X1JmFbF/Bangla-Vision.png",servers:[{label:"Main",url:"https://owrcovcrpy.gpcdn.net/bpk-tv/1715/output/1715-audio_113452_eng=113200-video=1181200.m3u8"}]},{id:58,name:"Bijoy TV",category:"Bangladesh",logo:"https://i.ibb.co.com/DP1GSwB3/Bijoy-TV.png",servers:[{label:"Main",url:"https://tvsen6.aynaott.com/bijoytv/index.m3u8"}]},{id:59,name:"Boishakhi TV",category:"Bangladesh",logo:"https://i.ibb.co.com/sptqqqj9/Boishakhi-TV.png",servers:[{label:"Main",url:"https://tvsen6.aynaott.com/boishakhitv/index.m3u8"}]},{id:60,name:"Bangla Tv",category:"Bangladesh",logo:"https://imglink.cc/cdn/YQ8D9Wf0IT.png",servers:[{label:"Main",url:"https://tvsen6.aynaott.com/banglatv/index.m3u8"}]},{id:61,name:"Channel I",category:"Bangladesh",logo:"https://imglink.cc/cdn/H038J5LwdN.png",servers:[{label:"Main",url:"https://tvsen6.aynaott.com/channeli/index.m3u8"}]},{id:62,name:"Channel 1 TV",category:"Bangladesh",logo:"https://i.ibb.co.com/N6HbH5rH/Channel-One-TV.png",servers:[{label:"Main",url:"https://app24.jagobd.com.bd/c3VydmVyX8RpbEU9Mi8xNy8yMFDEEHGcfRgzQ6NTAgdEoaeFzbF92YWxIZTO0U0ezN1IzMyfvcEdsEfeDeKiNkVN3PTOmdFseWRtaW51aiPhnPTI2/channel1bd.stream/tracks-v1a1/mono.m3u8"}]},{id:63,name:"Channel 24",category:"Bangladesh",logo:"https://i.ibb.co.com/v65cfQ96/Channel-24.png",servers:[{label:"Main",url:"https://owrcovcrpy.gpcdn.net/bpk-tv/1703/output/1703-audio_113332_eng=113200-video=2202800.m3u8"}]},{id:64,name:"Channel 9 HD",category:"Bangladesh",logo:"https://i.ibb.co.com/Xxrdnxkp/Channel9-HD.png",servers:[{label:"Main",url:"https://owrcovcrpy.gpcdn.net/bpk-tv/1729/output/1729-audio_113592_eng=113200-video=1181200.m3u8"}]},{id:65,name:"Channel S TV",category:"Bangladesh",logo:"https://i.ibb.co.com/Vp2HKT0s/Channel-S-TV.png",servers:[{label:"Main",url:"https://app.ncare.live/live-orgin/channels.stream/live-orgin/channels.stream/chunks.m3u8"}]},{id:66,name:"DBC News",category:"Bangladesh",logo:"https://i.ibb.co.com/TMKLMXs9/DBC-News.png",servers:[{label:"Main",url:"https://owrcovcrpy.gpcdn.net/bpk-tv/1728/output/index.m3u8"}]},{id:67,name:"Deepto TV",category:"Bangladesh",logo:"https://imglink.cc/cdn/2ODX-FAGY4.png",servers:[{label:"Main",url:"https://byphdgllyk.gpcdn.net/hls/deeptotv/0_1/index.m3u8"}]},{id:68,name:"Desh TV",category:"Bangladesh",logo:"https://i.ibb.co.com/fVH9h8Tk/Desh-TV.png",servers:[{label:"Main",url:"https://tvsen6.aynaott.com/deshtv/tracks-v1a1/mono.ts.m3u8"}]},{id:69,name:"Ekhon TV",category:"Bangladesh",logo:"https://i.ibb.co.com/YrDVpDt/Ekhon-Tv.png",servers:[{label:"Main",url:"https://tvsen6.aynaott.com/ekhontv/tracks-v1a1/mono.ts.m3u8"}]},{id:70,name:"Ekattor TV HD",category:"Bangladesh",logo:"https://i.ibb.co.com/DPZrfqzr/Ekattor-TV-HD.png",servers:[{label:"Main",url:"https://owrcovcrpy.gpcdn.net/bpk-tv/1705/output/1705.m3u8"}]},{id:71,name:"Ekushe TV",category:"Bangladesh",logo:"https://i.ibb.co.com/Myscx0rx/Ekushe-TV.png",servers:[{label:"Main",url:"https://tvsen6.aynaott.com/etv/tracks-v1a1/mono.ts.m3u8"}]},{id:72,name:"Global TV",category:"Bangladesh",logo:"https://i.ibb.co.com/Q7Q7X64N/Global-TV.png",servers:[{label:"Main",url:"https://app24.jagobd.com.bd/c3VydmVyX8RpbEU9Mi8xNy8yMFDEEHGcfRgzQ6NTAgdEoaeFzbF92YWxIZTO0U0ezN1IzMyfvcEdsEfeDeKiNkVN3PTOmdFseWRtaW51aiPhnPTI2/Global-tv.stream/tracks-v1a1/mono.m3u8"}]},{id:73,name:"GTV",category:"Bangladesh",logo:"https://i.ibb.co.com/cc5rftrN/Gazi-TV.png",servers:[{label:"Main",url:"https://app24.jagobd.com.bd/c3VydmVyX8RpbEU9Mi8xNy8yMFDEEHGcfRgzQ6NTAgdEoaeFzbF92YWxIZTO0U0ezN1IzMyfvcEdsEfeDeKiNkVN3PTOmdFseWRtaW51aiPhnPTI2/gazibdz.stream/tracks-v1a1/mono.m3u8"}]},{id:74,name:"Independent TV",category:"Bangladesh",logo:"https://e7.pngegg.com/pngimages/500/179/png-clipart-bangladesh-logo-independent-television-television-channel-bd-logo-television-text-thumbnail.png",servers:[{label:"Main",url:"https://tvsen6.aynaott.com/independenttv/tracks-v1a1/mono.ts.m3u8"}]},{id:75,name:"Jago News 24",category:"Bangladesh",logo:"https://i.ibb.co.com/KpRt3cT5/Jago-News-24.png",servers:[{label:"Main",url:"https://app.ncare.live/live-orgin/jagonews24.stream/live-orgin/jagonews24.stream/chunks.m3u8"}]},{id:76,name:"Jamuna TV",category:"Bangladesh",logo:"https://www.jamuna.tv/uploads/settings/default_img_1.jpg",servers:[{label:"Main",url:"https://tvsen6.aynaott.com/jamunatv/index.m3u8"}]},{id:77,name:"Maasranga TV",category:"Bangladesh",logo:"https://i.ibb.co.com/S7c6STRZ/Maasranga-TV.png",servers:[{label:"Main",url:"https://owrcovcrpy.gpcdn.net/bpk-tv/1722/output/1722.m3u8"}]},{id:78,name:"Mohona TV",category:"Bangladesh",logo:"https://i.ibb.co.com/Ndvm37Vr/Mohona-TV.png",servers:[{label:"Main",url:"https://app24.jagobd.com.bd/c3VydmVyX8RpbEU9Mi8xNy8yMFDEEHGcfRgzQ6NTAgdEoaeFzbF92YWxIZTO0U0ezN1IzMyfvcEdsEfeDeKiNkVN3PTOmdFseWRtaW51aiPhnPTI2/mohonatv.stream/tracks-v1a1/mono.m3u8"}]},{id:79,name:"My Tv",category:"Bangladesh",logo:"https://imglink.cc/cdn/7T2-k2SePa.png",servers:[{label:"Main",url:"https://tvsen6.aynaott.com/mytv/index.m3u8"}]},{id:80,name:"Nexus TV",category:"Bangladesh",logo:"https://i.ibb.co.com/d0hw38JN/Nexus-TV.png",servers:[{label:"Main",url:"https://tvsen6.aynaott.com/nexustv/tracks-v1a1/mono.ts.m3u8"}]},{id:81,name:"News 24",category:"Bangladesh",logo:"https://i.ibb.co.com/gLx9fX5N/News-24.png",servers:[{label:"Main",url:"https://owrcovcrpy.gpcdn.net/bpk-tv/1708/output/index.m3u8"}]},{id:82,name:"NTV",category:"Bangladesh",logo:"https://imglink.cc/cdn/D8KxMc9soN.png",servers:[{label:"Main",url:"https://owrcovcrpy.gpcdn.net/bpk-tv/1716/output/1716-audio_113462_eng=113200-video=1181200.m3u8"}]},{id:83,name:"RTV Live",category:"Bangladesh",logo:"https://imglink.cc/cdn/JZnibxXLfK.png",servers:[{label:"Main",url:"https://tvsen6.aynaott.com/rtv/tracks-v1a1/mono.ts.m3u8"}]},{id:84,name:"Star News",category:"Bangladesh",logo:"https://i.ibb.co.com/cXTjmmtP/Star-News.png",servers:[{label:"Main",url:"https://owrcovcrpy.gpcdn.net/bpk-tv/1710/output/1710-audio_113402_eng=113200-video=1181200.m3u8"}]},{id:85,name:"SA Tv",category:"Bangladesh",logo:"https://imglink.cc/cdn/qx2W3uKGsz.png",servers:[{label:"Main",url:"https://tvsen6.aynaott.com/satv/index.m3u8"}]},{id:86,name:"Thikana",category:"Bangladesh",logo:"https://imglink.cc/cdn/rw8iAU9ZcB.jpg",servers:[{label:"Main",url:"https://5dd3981940faa.streamlock.net:443/thikanatv/thikanatv/playlist.m3u8"}]},{id:87,name:"Republic Bangla",category:"News",logo:"https://imglink.cc/cdn/ndYg8AR85Y.jpg",servers:[{label:"Main",url:"https://vg-republictvlive.akamaized.net/v1/manifest/611d79b11b77e2f571934fd80ca1413453772ac7/vglive-sk-456368/06e5afc2-a022-4e51-9131-4e33a6207c5c/1.m3u8"}]},{id:88,name:"Wild Earth",category:"Documentary",logo:"https://imglink.cc/cdn/eEZmseF3Tb.jpg",servers:[{label:"Main",url:"https://wildearth-plex.amagi.tv/master.m3u8"}]},{id:89,name:"Animal Planet",category:"Documentary",logo:"https://imglink.cc/cdn/ebC033LNf2.png",servers:[{label:"Main",url:"https://tiger-hub.vercel.app@vodzong.mjunoon.tv:8087/streamtest/Animal-Planet-158-3/playlist.m3u8"}]}
 ];
-
-// FEATURED CHANNELS
-const FEATURED_IDS = [1, 2, 6, 8, 12, 14, 19, 20];
-
-// APP STATE
-let activeCat = "all";
-let currentChIdx = 0;
-let currentSrvIdx = 0;
-let hls = null;
-let uiTimeout = null;
-
-// DOM ELEMENTS
-const splash = document.getElementById("splash");
-const searchInp = document.getElementById("search");
-const catBar = document.getElementById("cat-bar");
-const sectionsDiv = document.getElementById("sections");
-const searchResDiv = document.getElementById("search-results");
-const btnRefresh = document.getElementById("btn-refresh");
-const totalChannelsSpan = document.getElementById("totalChannels");
-
-// PLAYER DOM
-const pWrap = document.getElementById("player");
-const video = document.getElementById("video");
-const pLoad = document.getElementById("p-load");
-const pLoadName = document.getElementById("p-load-name");
-const pErr = document.getElementById("p-err");
-const pLogo = document.getElementById("p-logo");
-const pName = document.getElementById("p-name");
-const pServers = document.getElementById("p-servers");
-const pBack = document.getElementById("p-back");
-const pFs = document.getElementById("p-fs");
-const pPrev = document.getElementById("p-prev");
-const pNext = document.getElementById("p-next");
-const pReload = document.getElementById("p-reload");
-const toast = document.getElementById("toast");
-
-// Set total channels
-totalChannelsSpan.textContent = CHANNELS.length;
-
-// INITIALIZE
-window.addEventListener("DOMContentLoaded", () => {
-  setTimeout(() => splash.classList.add("hide"), 1200);
-  renderLayout();
-  initEvents();
-});
-
-function renderLayout() {
-  sectionsDiv.innerHTML = "";
-  
-  if (activeCat === "all") {
-    // Featured Section
-    const featSection = document.createElement("div");
-    featSection.className = "featured-section";
-    const featTitle = document.createElement("div");
-    featTitle.className = "section-title";
-    featTitle.innerHTML = `🔥 সেরা স্ট্রিম <span class="ch-count">${FEATURED_IDS.length}</span>`;
-    featSection.appendChild(featTitle);
-    const featGrid = document.createElement("div");
-    featGrid.className = "featured-grid";
-    FEATURED_IDS.forEach(id => {
-      const ch = CHANNELS.find(c => c.id === id);
-      if (ch) featGrid.appendChild(createChannelCard(ch, true));
-    });
-    featSection.appendChild(featGrid);
-    sectionsDiv.appendChild(featSection);
-    
-    const divider = document.createElement("div");
-    divider.className = "sec-divider";
-    sectionsDiv.appendChild(divider);
-
-    // Group all channels by category
-    const groups = {};
-    CHANNELS.forEach(ch => {
-      if (!groups[ch.category]) groups[ch.category] = [];
-      groups[ch.category].push(ch);
-    });
-
-    for (const cat in groups) {
-      renderCategorySection(cat, groups[cat]);
-    }
-  } else {
-    const list = CHANNELS.filter(ch => ch.category === activeCat);
-    renderCategorySection(activeCat, list);
-  }
-}
-
-function renderCategorySection(catKey, list) {
-  if (!list.length) return;
-  const sect = document.createElement("div");
-  const title = document.createElement("div");
-  title.className = "section-title";
-  title.innerHTML = `${catKey} <span class="ch-count">${list.length}</span>`;
-  sect.appendChild(title);
-  const grid = document.createElement("div");
-  grid.className = "grid";
-  list.forEach(ch => grid.appendChild(createChannelCard(ch, false)));
-  sect.appendChild(grid);
-  sectionsDiv.appendChild(sect);
-}
-
-function createChannelCard(ch, isFeatured = false) {
-  const card = document.createElement("div");
-  
-  if (isFeatured) {
-    card.className = "feat-card";
-    card.innerHTML = `
-      <div class="feat-logo-wrap">
-        <img class="feat-logo" src="${ch.logo}" alt="${ch.name}" loading="lazy" onerror="this.style.display='none'">
-        <div class="feat-ph">${ch.name.substring(0,2)}</div>
-      </div>
-      <div class="feat-info">
-        <div>
-          <div class="feat-name">${ch.name}</div>
-          <div class="feat-srv">⚡ ${ch.servers.length} সার্ভার</div>
-        </div>
-        <span class="feat-badge">LIVE</span>
-      </div>
-    `;
-  } else {
-    card.className = "ch-card";
-    card.innerHTML = `
-      <img class="ch-logo" src="${ch.logo}" alt="${ch.name}" loading="lazy" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
-      <div class="ch-ph">${ch.name.substring(0,2)}</div>
-      <div class="ch-name">${ch.name}</div>
-      <div class="ch-meta"><span class="srv-dot"></span>${ch.servers.length} সার্ভার</div>
-    `;
-  }
-
-  card.addEventListener("click", () => {
-    const idx = CHANNELS.findIndex(c => c.id === ch.id);
-    playChannel(idx, 0);
-  });
-  return card;
-}
-
-function playChannel(chIdx, srvIdx = 0) {
-  if (chIdx < 0 || chIdx >= CHANNELS.length) return;
-  
-  currentChIdx = chIdx;
-  currentSrvIdx = srvIdx;
-  const ch = CHANNELS[chIdx];
-  const server = ch.servers[srvIdx];
-  
-  if (!server) return;
-
-  destroyPlayer();
-  
-  pWrap.classList.add("on");
-  pLoad.classList.remove("off");
-  pErr.style.display = "none";
-  video.classList.remove("playing");
-  
-  pLoadName.textContent = `${ch.name} লোড হচ্ছে...`;
-  pName.textContent = ch.name;
-  pLogo.src = ch.logo;
-  pLogo.onerror = () => pLogo.style.display = 'none';
-  
-  renderServerButtons(ch);
-  triggerUi();
-
-  const streamUrl = server.url;
-
-  if (Hls.isSupported() && streamUrl.includes(".m3u8")) {
-    hls = new Hls({ 
-      maxMaxBufferLength: 10, 
-      liveSyncDurationCount: 3,
-      lowLatencyMode: true,
-      enableWorker: true
-    });
-    hls.loadSource(streamUrl);
-    hls.attachMedia(video);
-    hls.on(Hls.Events.MANIFEST_PARSED, () => video.play().catch(handlePlayError));
-    hls.on(Hls.Events.ERROR, (event, data) => {
-      if (data.fatal) handleStreamError();
-    });
-  } else if (video.canPlayType("application/vnd.apple.mpegurl")) {
-    video.src = streamUrl;
-    video.addEventListener("loadedmetadata", () => video.play().catch(handlePlayError));
-  } else {
-    handleStreamError();
-  }
-
-  video.onplaying = () => {
-    pLoad.classList.add("off");
-    video.classList.add("playing");
-  };
-
-  video.onerror = () => handleStreamError();
-}
-
-function handlePlayError() {
-  pLoad.classList.add("off");
-  showToast("▶️ প্লে করতে ট্যাপ করুন");
-}
-
-function handleStreamError() {
-  pErr.style.display = "block";
-  const ch = CHANNELS[currentChIdx];
-  if (currentSrvIdx + 1 < ch.servers.length) {
-    showToast(`সার্ভার ${currentSrvIdx+1} ব্যর্থ, ${currentSrvIdx+2} নং সার্ভার লোড হচ্ছে...`);
-    setTimeout(() => playChannel(currentChIdx, currentSrvIdx + 1), 2000);
-  } else {
-    pLoad.classList.add("off");
-    showToast("সব সার্ভার ব্যর্থ হয়েছে। পরে আবার চেষ্টা করুন।");
-    setTimeout(() => pErr.style.display = "none", 3000);
-  }
-}
-
-function renderServerButtons(ch) {
-  pServers.innerHTML = "";
-  ch.servers.forEach((srv, i) => {
-    const btn = document.createElement("button");
-    btn.className = `srv-btn ${i === currentSrvIdx ? 'on' : ''}`;
-    btn.textContent = srv.label || `S${i+1}`;
-    btn.onclick = (e) => {
-      e.stopPropagation();
-      playChannel(currentChIdx, i);
-    };
-    pServers.appendChild(btn);
-  });
-}
-
-function destroyPlayer() {
-  video.pause();
-  video.src = "";
-  if (hls) { hls.destroy(); hls = null; }
-}
-
-function triggerUi() {
-  pWrap.classList.add("show-ui");
-  clearTimeout(uiTimeout);
-  uiTimeout = setTimeout(() => pWrap.classList.remove("show-ui"), 3500);
-}
-
-function initEvents() {
-  // Category Tabs
-  catBar.addEventListener("click", (e) => {
-    const btn = e.target.closest(".cat-btn");
-    if (!btn) return;
-    document.querySelectorAll(".cat-btn").forEach(b => b.classList.remove("active"));
-    btn.classList.add("active");
-    activeCat = btn.dataset.cat;
-    renderLayout();
-  });
-
-  // Search
-  searchInp.addEventListener("input", (e) => {
-    const val = e.target.value.toLowerCase().trim();
-    if (!val) {
-      searchResDiv.classList.add("hidden");
-      sectionsDiv.classList.remove("hidden");
-      return;
-    }
-    
-    sectionsDiv.classList.add("hidden");
-    searchResDiv.classList.remove("hidden");
-    
-    const matches = CHANNELS.filter(ch => 
-      ch.name.toLowerCase().includes(val) || 
-      ch.category.toLowerCase().includes(val)
-    );
-    
-    if (!matches.length) {
-      searchResDiv.innerHTML = `<div class="noresult">😞 কোন চ্যানেল পাওয়া যায়নি!</div>`;
-      return;
-    }
-
-    searchResDiv.innerHTML = `<div class="section-title">🔍 খোঁজার ফলাফল <span class="ch-count">${matches.length}</span></div>`;
-    const grid = document.createElement("div");
-    grid.className = "grid";
-    matches.forEach(ch => grid.appendChild(createChannelCard(ch, false)));
-    searchResDiv.appendChild(grid);
-  });
-
-  // Refresh
-  btnRefresh.addEventListener("click", () => {
-    showToast("🔄 রিফ্রেশ করা হচ্ছে...");
-    renderLayout();
-  });
-
-  // Player controls
-  pBack.onclick = () => { destroyPlayer(); pWrap.classList.remove("on"); };
-  pWrap.onclick = () => triggerUi();
-  pReload.onclick = (e) => { e.stopPropagation(); playChannel(currentChIdx, currentSrvIdx); };
-  pNext.onclick = (e) => {
-    e.stopPropagation();
-    let next = currentChIdx + 1;
-    if (next >= CHANNELS.length) next = 0;
-    playChannel(next, 0);
-  };
-  pPrev.onclick = (e) => {
-    e.stopPropagation();
-    let prev = currentChIdx - 1;
-    if (prev < 0) prev = CHANNELS.length - 1;
-    playChannel(prev, 0);
-  };
-  pFs.onclick = (e) => {
-    e.stopPropagation();
-    if (!document.fullscreenElement) {
-      pWrap.requestFullscreen().catch(() => showToast("Fullscreen not supported"));
-    } else {
-      document.exitFullscreen();
-    }
-  };
-}
-
-function showToast(msg) {
-  toast.textContent = msg;
-  toast.classList.add("show");
-  setTimeout(() => toast.classList.remove("show"), 3000);
-}
+const FEATURED_IDS = [1,2,6,8,12,14,19,20];
+let activeCat="all", currentChIdx=0, currentSrvIdx=0, currentQuality="auto", hls=null, uiTimeout=null;
+const splash=document.getElementById("splash"), searchInp=document.getElementById("search"), catBar=document.getElementById("cat-bar"), sectionsDiv=document.getElementById("sections"), searchResDiv=document.getElementById("search-results"), btnRefresh=document.getElementById("btn-refresh"), totalChannelsSpan=document.getElementById("totalChannels"), pWrap=document.getElementById("player"), video=document.getElementById("video"), pLoad=document.getElementById("p-load"), pLoadName=document.getElementById("p-load-name"), pErr=document.getElementById("p-err"), pLogo=document.getElementById("p-logo"), pName=document.getElementById("p-name"), pServers=document.getElementById("p-servers"), qualitySel=document.getElementById("qualitySelector"), pBack=document.getElementById("p-back"), pFs=document.getElementById("p-fs"), pPrev=document.getElementById("p-prev"), pNext=document.getElementById("p-next"), pReload=document.getElementById("p-reload"), toast=document.getElementById("toast");
+totalChannelsSpan.textContent=CHANNELS.length;
+window.addEventListener("DOMContentLoaded",()=>{setTimeout(()=>splash.classList.add("hide"),1200);renderLayout();initEvents();});
+function renderLayout(){sectionsDiv.innerHTML="";if(activeCat==="all"){const featSection=document.createElement("div");featSection.className="featured-section";const featTitle=document.createElement("div");featTitle.className="section-title";featTitle.innerHTML=`🔥 সেরা স্ট্রিম <span class="ch-count">${FEATURED_IDS.length}</span>`;featSection.appendChild(featTitle);const featGrid=document.createElement("div");featGrid.className="featured-grid";FEATURED_IDS.forEach(id=>{const ch=CHANNELS.find(c=>c.id===id);if(ch)featGrid.appendChild(createChannelCard(ch,true));});featSection.appendChild(featGrid);sectionsDiv.appendChild(featSection);const divider=document.createElement("div");divider.className="sec-divider";sectionsDiv.appendChild(divider);const groups={};CHANNELS.forEach(ch=>{if(!groups[ch.category])groups[ch.category]=[];groups[ch.category].push(ch);});for(const cat in groups){renderCategorySection(cat,groups[cat]);}}else{const list=CHANNELS.filter(ch=>ch.category===activeCat);renderCategorySection(activeCat,list);}}
+function renderCategorySection(catKey,list){if(!list.length)return;const sect=document.createElement("div");const title=document.createElement("div");title.className="section-title";title.innerHTML=`${catKey} <span class="ch-count">${list.length}</span>`;sect.appendChild(title);const grid=document.createElement("div");grid.className="grid";list.forEach(ch=>grid.appendChild(createChannelCard(ch,false)));sect.appendChild(grid);sectionsDiv.appendChild(sect);}
+function createChannelCard(ch,isFeatured){const card=document.createElement("div");if(isFeatured){card.className="feat-card";card.innerHTML=`<div class="feat-logo-wrap"><img class="feat-logo" src="${ch.logo}" alt="${ch.name}" loading="lazy" onerror="this.style.display='none'"><div class="feat-ph">${ch.name.substring(0,2)}</div></div><div class="feat-info"><div><div class="feat-name">${ch.name}</div><div class="feat-srv">⚡ ${ch.servers.length} সার্ভার</div></div><span class="feat-badge">LIVE</span></div>`;}else{card.className="ch-card";card.innerHTML=`<img class="ch-logo" src="${ch.logo}" alt="${ch.name}" loading="lazy" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'"><div class="ch-ph">${ch.name.substring(0,2)}</div><div class="ch-name">${ch.name}</div><div class="ch-meta"><span class="srv-dot"></span>${ch.servers.length} সার্ভার</div>`;}card.addEventListener("click",()=>{const idx=CHANNELS.findIndex(c=>c.id===ch.id);playChannel(idx,0);});return card;}
+function playChannel(chIdx,srvIdx=0){if(chIdx<0||chIdx>=CHANNELS.length)return;currentChIdx=chIdx;currentSrvIdx=srvIdx;const ch=CHANNELS[chIdx];const server=ch.servers[srvIdx];if(!server)return;destroyPlayer();pWrap.classList.add("on");pLoad.classList.remove("off");pErr.style.display="none";video.classList.remove("playing");pLoadName.textContent=`${ch.name} লোড হচ্ছে...`;pName.textContent=ch.name;pLogo.src=ch.logo;pLogo.onerror=()=>pLogo.style.display='none';renderServerButtons(ch);renderQualityButtons(ch);triggerUi();let streamUrl=server.url;if(currentQuality==="low"&&ch.name==="T Sports"){streamUrl=streamUrl.replace(".m3u8","_low.m3u8");}if(Hls.isSupported()&&streamUrl.includes(".m3u8")){hls=new Hls({maxMaxBufferLength:8,liveSyncDurationCount:2,lowLatencyMode:false,enableWorker:true,backBufferLength:30});hls.loadSource(streamUrl);hls.attachMedia(video);hls.on(Hls.Events.MANIFEST_PARSED,()=>video.play().catch(e=>{pLoad.classList.add("off");showToast("▶️ প্লে করতে ট্যাপ করুন");}));hls.on(Hls.Events.ERROR,(event,data)=>{if(data.fatal)handleStreamError();});}else if(video.canPlayType("application/vnd.apple.mpegurl")){video.src=streamUrl;video.addEventListener("loadedmetadata",()=>video.play().catch(e=>{pLoad.classList.add("off");showToast("▶️ প্লে করতে ট্যাপ করুন");}));}else{handleStreamError();}video.onplaying=()=>{pLoad.classList.add("off");video.classList.add("playing");};video.onerror=()=>handleStreamError();}
+function renderServerButtons(ch){pServers.innerHTML="";ch.servers.forEach((srv,i)=>{const btn=document.createElement("button");btn.className=`srv-btn ${i===currentSrvIdx?'on':''}`;btn.textContent=srv.label||`S${i+1}`;btn.onclick=(e)=>{e.stopPropagation();playChannel(currentChIdx,i);};pServers.appendChild(btn);});}
+function renderQualityButtons(ch){qualitySel.innerHTML="";if(ch.name==="T Sports"){const hdBtn=document.createElement("button");hdBtn.className=`quality-btn ${currentQuality==="auto"?'on':''}`;hdBtn.textContent="HD";hdBtn.onclick=(e)=>{e.stopPropagation();currentQuality="auto";playChannel(currentChIdx,currentSrvIdx);};const sdBtn=document.createElement("button");sdBtn.className=`quality-btn ${currentQuality==="low"?'on':''}`;sdBtn.textContent="SD (স্মুথ)";sdBtn.onclick=(e)=>{e.stopPropagation();currentQuality="low";playChannel(currentChIdx,currentSrvIdx);};qualitySel.appendChild(hdBtn);qualitySel.appendChild(sdBtn);}else{const autoBtn=document.createElement("button");autoBtn.className="quality-btn on";autoBtn.textContent="HD/SD Auto";autoBtn.onclick=(e)=>{e.stopPropagation();showToast("এই চ্যানেলের জন্য স্বয়ংক্রিয় কোয়ালিটি সক্রিয়");};qualitySel.appendChild(autoBtn);}}
+function destroyPlayer(){video.pause();video.src="";if(hls){hls.destroy();hls=null;}}
+function handleStreamError(){pErr.style.display="block";const ch=CHANNELS[currentChIdx];if(currentSrvIdx+1<ch.servers.length){showToast(`সার্ভার ${currentSrvIdx+1} ব্যর্থ, ${currentSrvIdx+2} নং সার্ভার লোড হচ্ছে...`);setTimeout(()=>playChannel(currentChIdx,currentSrvIdx+1),2000);}else{pLoad.classList.add("off");showToast("সব সার্ভার ব্যর্থ হয়েছে। পরে আবার চেষ্টা করুন।");setTimeout(()=>pErr.style.display="none",3000);}}
+function triggerUi(){pWrap.classList.add("show-ui");clearTimeout(uiTimeout);uiTimeout=setTimeout(()=>pWrap.classList.remove("show-ui"),3500);}
+function initEvents(){catBar.addEventListener("click",(e)=>{const btn=e.target.closest(".cat-btn");if(!btn)return;document.querySelectorAll(".cat-btn").forEach(b=>b.classList.remove("active"));btn.classList.add("active");activeCat=btn.dataset.cat;renderLayout();});searchInp.addEventListener("input",(e)=>{const val=e.target.value.toLowerCase().trim();if(!val){searchResDiv.classList.add("hidden");sectionsDiv.classList.remove("hidden");return;}sectionsDiv.classList.add("hidden");searchResDiv.classList.remove("hidden");const matches=CHANNELS.filter(ch=>ch.name.toLowerCase().includes(val)||ch.category.toLowerCase().includes(val));if(!matches.length){searchResDiv.innerHTML=`<div class="noresult">😞 কোন চ্যানেল পাওয়া যায়নি!</div>`;return;}searchResDiv.innerHTML=`<div class="section-title">🔍 খোঁজার ফলাফল <span class="ch-count">${matches.length}</span></div>`;const grid=document.createElement("div");grid.className="grid";matches.forEach(ch=>grid.appendChild(createChannelCard(ch,false)));searchResDiv.appendChild(grid);});btnRefresh.addEventListener("click",()=>{showToast("🔄 রিফ্রেশ করা হচ্ছে...");renderLayout();});pBack.onclick=()=>{destroyPlayer();pWrap.classList.remove("on");};pWrap.onclick=()=>triggerUi();pReload.onclick=(e)=>{e.stopPropagation();playChannel(currentChIdx,currentSrvIdx);};pNext.onclick=(e)=>{e.stopPropagation();let next=currentChIdx+1;if(next>=CHANNELS.length)next=0;playChannel(next,0);};pPrev.onclick=(e)=>{e.stopPropagation();let prev=currentChIdx-1;if(prev<0)prev=CHANNELS.length-1;playChannel(prev,0);};pFs.onclick=(e)=>{e.stopPropagation();if(!document.fullscreenElement){pWrap.requestFullscreen().catch(()=>showToast("Fullscreen not supported"));}else{document.exitFullscreen();}};}
+function showToast(msg){toast.textContent=msg;toast.classList.add("show");setTimeout(()=>toast.classList.remove("show"),3000);}
 </script>
 </body>
 </html>
