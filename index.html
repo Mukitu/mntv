@@ -192,7 +192,112 @@ body::after{content:'';position:fixed;inset:0;
   
 <header class="header"><a class="logo-wrap" href="#" onclick="return false"><div class="logo-icon">⚽</div><div class="logo-text"><div class="name">MN TV </div><span class="sub">Live Streaming</span></div></a><div class="header-search"><input type="text" id="search" placeholder="🔍 চ্যানেল খুঁজুন..." autocomplete="off"></div><div class="header-actions"><span class="live-pill">● LIVE</span><button class="hbtn" id="btn-refresh" title="Refresh">⟳</button></div></header>
 <div class="cat-bar" id="cat-bar"><button class="cat-btn active" data-cat="all">সব</button><button class="cat-btn" data-cat="Sports">স্পোর্টস</button><button class="cat-btn" data-cat="FIFA World Cup">ফিফা বিশ্বকাপ</button><button class="cat-btn" data-cat="Bangladesh">বাংলাদেশ</button><button class="cat-btn" data-cat="Entertainment">এন্টারটেইনমেন্ট</button><button class="cat-btn" data-cat="News">নিউজ</button><button class="cat-btn" data-cat="Movies">সিনেমা</button><button class="cat-btn" data-cat="Music">মিউজিক</button><button class="cat-btn" data-cat="Cartoon">কার্টুন</button><button class="cat-btn" data-cat="Documentary">ডকুমেন্টারি</button></div>
-<main class="main"><div class="stats-bar"><div class="stat"><div class="stat-num" id="totalChannels">0</div><div class="stat-lbl">চ্যানেল</div></div><div class="stat"><div class="stat-num">HD/SD</div><div class="stat-lbl">কোয়ালিটি</div></div><div class="stat"><div class="stat-num">24/7</div><div class="stat-lbl">লাইভ</div></div><div class="stat"><div class="stat-num">FREE</div><div class="stat-lbl">সম্পূর্ণ ফ্রি</div></div></div><div id="search-results" class="hidden"></div><div id="sections"></div><footer class="footer"><strong>MN TV</strong> — FIFA Worldcup Live Streaming<br><span style="font-size:10px;margin-top:6px;display:block;opacity:.7">© 2026 MN TV. All rights reserved.</span></footer></main>
+<main class="main">
+  
+  
+  
+  
+  
+  
+  
+  
+ <!-- ⚡ এখান থেকে কপি শুরু করুন (এই CSS অংশটুকু head এ বা style ট্যাগের ভিতরে যোগ করুন) -->
+<style>
+.notice-scroll {
+    background: linear-gradient(135deg, #0a0f1e 0%, #0a0510 100%);
+    border-bottom: 2px solid var(--accent);
+    border-top: 1px solid rgba(255,255,255,0.05);
+    color: white;
+    font-size: 13px;
+    font-weight: 500;
+    padding: 12px 0;
+    backdrop-filter: blur(4px);
+    z-index: 100;
+    position: relative;
+    overflow: hidden;
+    white-space: nowrap;
+    margin: 0;
+}
+.notice-scroll .scroll-content {
+    display: inline-block;
+    animation: scrollNotice 22s linear infinite;
+    padding-left: 100%;
+}
+@keyframes scrollNotice {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(-100%); }
+}
+.notice-badge {
+    background: #dc2626;
+    padding: 4px 14px;
+    border-radius: 40px;
+    font-size: 11px;
+    font-weight: 700;
+    margin-right: 30px;
+    box-shadow: 0 0 10px rgba(220,38,38,0.5);
+    display: inline-block;
+}
+.notice-off {
+    background: #991b1b;
+    padding: 3px 10px;
+    border-radius: 20px;
+    font-size: 10px;
+    margin-left: 6px;
+    font-weight: 700;
+}
+.notice-on {
+    background: #15803d;
+    padding: 3px 10px;
+    border-radius: 20px;
+    font-size: 10px;
+    margin-left: 6px;
+    font-weight: 700;
+}
+.notice-highlight {
+    color: #fbbf24;
+    font-weight: 800;
+}
+@media (max-width: 768px) {
+    .notice-scroll { font-size: 11px; padding: 10px 0; }
+    .notice-badge { font-size: 9px; padding: 3px 10px; margin-right: 20px; }
+    .notice-off { font-size: 8px; padding: 2px 7px; }
+}
+</style>
+<!-- ⚡ CSS শেষ -->
+
+<!-- ⚡ এই HTML অংশটি সার্চ বারের নিচে বসানোর জন্য (main এর ভিতরে, cat-bar এর পর) -->
+<div class="notice-scroll">
+    <div class="scroll-content">
+        <span class="notice-badge">🚨 জরুরি নোটিশ</span>
+        <span style="margin-right: 35px;">⛔ <strong style="color: #f87171;">সময় টিভি</strong> <span class="notice-off">OFF 🔴</span></span>
+        <span style="margin-right: 35px;">⛔ <strong style="color: #f87171;">টি স্পোর্টস</strong> <span class="notice-off">OFF 🔴</span></span>
+        <span style="margin-right: 35px;">✅ <strong style="color: #4ade80;">বাকি সব চ্যানেল সম্পূর্ণ সচল</strong> <span class="notice-on">লাইভ ✅</span></span>
+        <span style="margin-right: 35px;">🏆 ফিফা বিশ্বকাপ ২০২৬ দেখুন <span class="notice-highlight">MN TV</span>-তে ফ্রিতে!</span>
+        <span>🔥 ২৪/৭ লাইভ | সম্পূর্ণ ফ্রি | কোন রেজিস্ট্রেশন নেই</span>
+    </div>
+</div>
+<!-- ⚡ HTML শেষ -->
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  <div class="stats-bar"><div class="stat"><div class="stat-num" id="totalChannels">0</div><div class="stat-lbl">চ্যানেল</div></div><div class="stat"><div class="stat-num">HD/SD</div><div class="stat-lbl">কোয়ালিটি</div></div><div class="stat"><div class="stat-num">24/7</div><div class="stat-lbl">লাইভ</div></div><div class="stat"><div class="stat-num">FREE</div><div class="stat-lbl">সম্পূর্ণ ফ্রি</div></div></div><div id="search-results" class="hidden"></div><div id="sections"></div><footer class="footer"><strong>MN TV</strong> — FIFA Worldcup Live Streaming<br><span style="font-size:10px;margin-top:6px;display:block;opacity:.7">© 2026 MN TV. All rights reserved.</span></footer></main>
 <div class="toast" id="toast"></div>
 <div id="player"><video id="video" playsinline webkit-playsinline></video><div id="p-load"><div class="p-spin"></div><div class="p-load-name" id="p-load-name">Loading...</div></div><div id="p-err">⚠️ স্ট্রিম ত্রুটি — অন্য সার্ভার চেষ্টা করা হচ্ছে...</div><div id="p-top"><button id="p-back">←</button><img id="p-logo" src="" alt=""><div id="p-name">Channel</div><div id="p-servers"></div><div class="quality-selector" id="qualitySelector"></div><button id="p-fs">⛶</button></div><div id="p-bottom"><button class="ctrl" id="p-prev">◀◀</button><button class="ctrl" id="p-reload">⟳</button><button class="ctrl" id="p-next">▶▶</button></div></div>
 <script>
