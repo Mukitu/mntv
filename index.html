@@ -585,6 +585,7 @@ function streamFailed(){
   setTimeout(()=>{ $('p-err').style.display='none'; }, 4000);
 }
 
+window.playCh=function(idx){
   curIdx=idx;
   const ch=CHANNELS[idx];
   const saved = parseInt(localStorage.getItem('mntv_srv_'+idx)||'0',10);
