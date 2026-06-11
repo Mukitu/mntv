@@ -24,7 +24,7 @@ body{background-color:var(--bg);color:var(--text);font-family:var(--font);overfl
 .hide{display:none !important;}
 
 /* Header */
-header{display:flex;align-items:center;justify-content:between;padding:18px 24px;background:var(--bg2);border-bottom:1px solid rgba(255,255,255,0.03);position:sticky;top:0;z-index:90;box-shadow:0 10px 30px rgba(0,0,0,0.5);}
+header{display:flex;align-items:center;justify-content:space-between;padding:18px 24px;background:var(--bg2);border-bottom:1px solid rgba(255,255,255,0.03);position:sticky;top:0;z-index:90;box-shadow:0 10px 30px rgba(0,0,0,0.5);}
 .h-left{display:flex;align-items:center;gap:12px;}
 .logo-icon{background:linear-gradient(135deg, var(--primary), #632260);width:42px;height:42px;border-radius:14px;display:flex;align-items:center;justify-content:center;box-shadow:0 0 20px var(--primary-glow);font-weight:800;font-size:20px;font-family:var(--font-h);}
 .brand h1{font-size:22px;font-weight:800;font-family:var(--font-h);letter-spacing:-0.5px;background:linear-gradient(to right,#fff,var(--text-m));-webkit-background-clip:text;-webkit-text-fill-color:transparent;}
@@ -65,14 +65,14 @@ main{max-width:1400px;margin:0 auto;padding:24px;}
 #player{position:fixed;inset:0;background:#000;z-index:100;display:none;flex-direction:column;opacity:0;transition:opacity 0.3s;}
 #player.on{display:flex;opacity:1;}
 #videoWrap{flex:1;position:relative;display:flex;align-items:center;justify-content:center;background:#000;overflow:hidden;}
-video{width:100%;height:100%;object-contain:contain;background:#000;}
+video{width:100%;height:100%;object-fit:contain;background:#000;}
 
 /* Player Overlay UI */
-.p-ui{position:absolute;inset:0;background:linear-gradient(to bottom, rgba(0,0,0,0.7) 0%, transparent 20%, transparent 80%, rgba(0,0,0,0.8) 100%);display:flex;flex-direction:column;justify-content:between;opacity:0;pointer-events:none;transition:opacity 0.3s cubic-bezier(0.4,0,0.2,1);z-index:10;}
+.p-ui{position:absolute;inset:0;background:linear-gradient(to bottom, rgba(0,0,0,0.7) 0%, transparent 20%, transparent 80%, rgba(0,0,0,0.8) 100%);display:flex;flex-direction:column;justify-content:space-between;opacity:0;pointer-events:none;transition:opacity 0.3s cubic-bezier(0.4,0,0.2,1);z-index:10;}
 #player.show-ui .p-ui{opacity:1;pointer-events:auto;}
 
 /* Player Bars */
-#player-top-bar{padding:16px 24px;display:flex;align-items:center;justify-content:between;width:100%;}
+#player-top-bar{padding:16px 24px;display:flex;align-items:center;justify-content:space-between;width:100%;}
 .p-title-block{display:flex;align-items:center;gap:14px;max-width:70%;}
 .p-btn{background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.05);color:#fff;width:40px;height:40px;border-radius:12px;display:flex;align-items:center;justify-content:center;cursor:pointer;transition:all 0.15s;}
 .p-btn:hover{background:#fff;color:#000;}
@@ -90,7 +90,7 @@ video{width:100%;height:100%;object-contain:contain;background:#000;}
 .server-pill.active{background:var(--primary);color:#fff;border-color:var(--primary);box-shadow:0 0 10px var(--primary-glow);}
 
 /* Native Buffering Spinner */
-#p-load{position:absolute;inset:0;background:rgba(0,0,0,0.75);display:none;flex-direction:column;align-items:center;justify-content:center;gap:16px;z-index:5;backdrop-blur:10px;}
+#p-load{position:absolute;inset:0;background:rgba(0,0,0,0.75);display:none;flex-direction:column;align-items:center;justify-content:center;gap:16px;z-index:5;backdrop-filter:blur(10px);}
 #p-load.on{display:flex;}
 .spinner{width:46px;height:46px;border:3.5px solid rgba(164,54,160,0.1);border-top-color:var(--primary);border-radius:50%;animation:spin 0.8s linear infinite;}
 #p-load-text{font-size:15px;font-weight:600;color:var(--text-m);max-width:80%;text-align:center;}
@@ -136,30 +136,37 @@ video{width:100%;height:100%;object-contain:contain;background:#000;}
 </header>
 
 <main>
+  <!-- Notice Bar -->
   <div class="notice-bar">
     <div class="notice-tag">বিজ্ঞপ্তি</div>
     <marquee id="notice-text">লোডিং হচ্ছে... দয়া করে অপেক্ষা করুন।</marquee>
   </div>
 
+  <!-- Category List -->
   <div class="tabs-wrap">
     <div class="tabs-container" id="category-container">
       <button class="tab active" onclick="filterCategory('all')">সব চ্যানেল <span class="tab-count" id="count-all">0</span></button>
     </div>
   </div>
 
+  <!-- Channels Grid -->
   <div class="grid" id="channels-grid"></div>
 </main>
 
+<!-- Unified Master Player Container -->
 <div id="player">
   <div id="videoWrap">
     <video id="video-player" playsinline></video>
     
+    <!-- Loader Engine Overlay -->
     <div id="p-load">
       <div class="spinner"></div>
       <p id="p-load-text">চ্যানেল সংযোগ করা হচ্ছে...</p>
     </div>
 
+    <!-- Smart Controller HUD UI Overlay -->
     <div class="p-ui">
+      <!-- HUD Header -->
       <div id="player-top-bar">
         <div class="p-title-block">
           <button class="p-btn" id="p-back" title="বন্ধ করুন">
@@ -173,6 +180,7 @@ video{width:100%;height:100%;object-contain:contain;background:#000;}
         </button>
       </div>
 
+      <!-- HUD Footer -->
       <div id="player-bottom-bar">
         <div id="p-servers"></div>
         <div class="p-ctrls">
@@ -191,14 +199,22 @@ video{width:100%;height:100%;object-contain:contain;background:#000;}
   </div>
 </div>
 
+<!-- Alert Snacker -->
 <div id="toast">বিজ্ঞপ্তি বার্তা</div>
 
 <script>
 // ==========================================
-// CONFIGURATION ENGINE (M3U & PROXY SOURCES)
+// CONFIGURATION ENGINE (M3U & MULTI-PROXY)
 // ==========================================
 const WORKER_URL = 'https://playlist.emonsa4.workers.dev/playlist.m3u';
-const CORS_PROXY = 'https://iptvtest068.emonsa4.workers.dev/?';
+
+// একাধিক CORS Proxy ব্যাকআপ হিসেবে রাখা হলো যাতে একটি ডাউন বা ব্লক হলে অন্যটি কাজ করে
+const PROXIES = [
+    "", // সরাসরি রিকোয়েস্ট (No Proxy)
+    "https://api.allorigins.win/raw?url=", 
+    "https://corsproxy.io/?",
+    "https://iptvtest068.emonsa4.workers.dev/?"
+];
 
 let CHANNELS = [];
 let FILTERED_CHANNELS = [];
@@ -224,6 +240,7 @@ window.addEventListener('DOMContentLoaded', () => {
     
     // Global Event Controls
     $('btn-sync').onclick = () => { toast('প্লেলিস্ট আপডেট করা হচ্ছে...'); fetchPlaylist(); };
+    $('btn-refresh').onclick = () => { location.reload(); };
     $('p-back').onclick = closePlayer;
     $('p-reload').onclick = () => { if(curIdx >= 0) loadServerStream(curSrv); };
     $('p-prev').onclick = () => { if(curIdx > 0) playChannelByIndex(curIdx - 1); };
@@ -257,18 +274,35 @@ async function fetchSettings() {
     }
 }
 
-// Master M3U Extractor Logic
+// Smart Auto-Recovery Playlist Fetcher (Multi-Proxy support)
 async function fetchPlaylist() {
-    try {
-        const targetUrl = CORS_PROXY + encodeURIComponent(WORKER_URL);
-        const res = await fetch(targetUrl);
-        if(!res.ok) throw new Error("Could not parse from remote endpoint source");
-        const data = await res.text();
-        
-        parseM3UContent(data);
-    } catch (e) {
-        console.error(e);
-        toast("চ্যানেল ডাটা লোড করতে ব্যর্থ হয়েছে!");
+    let success = false;
+    
+    for (let i = 0; i < PROXIES.length; i++) {
+        try {
+            let targetUrl = PROXIES[i] === "" ? WORKER_URL : (PROXIES[i] + encodeURIComponent(WORKER_URL));
+            // corsproxy.io এর জন্য এনকোডিং ছাড়া ট্রাই করা ভালো
+            if(PROXIES[i].includes("corsproxy.io")) {
+                targetUrl = PROXIES[i] + WORKER_URL;
+            }
+            
+            console.log("Trying to fetch playlist via:", targetUrl);
+            const res = await fetch(targetUrl);
+            if(!res.ok) throw new Error("Fetch failed");
+            
+            const data = await res.text();
+            if(data && data.includes("#EXTM3U")) {
+                parseM3UContent(data);
+                success = true;
+                break; // সফল হলে লুপ থেকে বের হয়ে যাবে
+            }
+        } catch (e) {
+            console.warn(`Proxy ${i} failed, trying next...`);
+        }
+    }
+    
+    if (!success) {
+        toast("চ্যানেল ডাটা লোড করতে ব্যর্থ হয়েছে! অনুগ্রহ করে রিলোড দিন।");
     }
 }
 
@@ -282,7 +316,6 @@ function parseM3UContent(text) {
         let line = lines[i].trim();
         if(line.startsWith('#EXTINF:')) {
             currentItem = {};
-            // Parse attributes
             const groupMatch = line.match(/group-title="([^"]+)"/i);
             const logoMatch = line.match(/tvg-logo="([^"]+)"/i);
             const nameMatch = line.match(/,(.+)$/);
@@ -292,7 +325,6 @@ function parseM3UContent(text) {
             currentItem.name = nameMatch ? nameMatch[1].trim() : "অজানা চ্যানেল";
             categoriesSet.add(currentItem.category);
         } else if(line.startsWith('http') && currentItem) {
-            // প্রতিটি সোর্সকে সার্ভার ফরম্যাটে সাজানো হচ্ছে
             currentItem.servers = [{ label: "সার্ভার ১", url: line }];
             CHANNELS.push(currentItem);
             currentItem = null;
@@ -311,7 +343,6 @@ function generateCategoryTabs(categories) {
     const container = $('category-container');
     container.innerHTML = `<button class="tab active" id="tab-all" onclick="filterCategory('all')">সব চ্যানেল <span class="tab-count">${CHANNELS.length}</span></button>`;
     
-    // Sort logic categories count append
     categories.forEach(cat => {
         const count = CHANNELS.filter(c => c.category === cat).length;
         container.innerHTML += `<button class="tab" id="tab-${cat.replace(/\s+/g, '-')}" onclick="filterCategory('${cat}')">${cat} <span class="tab-count">${count}</span></button>`;
@@ -324,7 +355,8 @@ function filterCategory(cat) {
         $('tab-all').classList.add('active');
         FILTERED_CHANNELS = [...CHANNELS];
     } else {
-        $(`tab-${cat.replace(/\s+/g, '-')}`).classList.add('active');
+        const targetTab = $(`tab-${cat.replace(/\s+/g, '-')}`);
+        if(targetTab) targetTab.classList.add('active');
         FILTERED_CHANNELS = CHANNELS.filter(c => c.category === cat);
     }
     renderGridSystem(FILTERED_CHANNELS);
@@ -348,7 +380,6 @@ function renderGridSystem(list) {
             <div class="c-name">${ch.name}</div>
         `;
         
-        // Mouse move light effect logic card mouse listeners
         el.addEventListener('mousemove', e => {
             const rect = el.getBoundingClientRect();
             el.style.setProperty('--x', `${e.clientX - rect.left}px`);
@@ -358,6 +389,9 @@ function renderGridSystem(list) {
         el.onclick = () => playChannelByIndex(idx);
         grid.appendChild(el);
     });
+    
+    // কাউন্টারটি আপডেট করার জন্য
+    $('count-all').innerText = CHANNELS.length;
 }
 
 // ==========================================
@@ -372,7 +406,6 @@ function playChannelByIndex(idx) {
     $('p-name').innerText = ch.name;
     $('p-logo').src = ch.logo;
     
-    // Generate Server Buttons pills dynamically
     const srvBox = $('p-servers');
     srvBox.innerHTML = "";
     ch.servers.forEach((srv, sIdx) => {
@@ -395,28 +428,26 @@ function changeServerSource(srvIndex) {
     loadServerStream(srvIndex);
 }
 
-// High Optimization Buffer Loader Routine Engine 
 function loadServerStream(srvIdx) {
     destroyPlayerInstance();
     showBufferingState(true, "চ্যানেল প্রসেস করা হচ্ছে, দয়া করে অপেক্ষা করুন...");
     
     const rawUrl = FILTERED_CHANNELS[curIdx].servers[srvIdx].url;
-    // BTV bypass logic proxies natively
+    // BTV ছাড়া বাকি চ্যানেলগুলোতে ক্লাউডফ্লেয়ার বা ডিরেক্ট জেনারেশন প্রক্সি ব্যবহার করা হবে
     const isBtv = FILTERED_CHANNELS[curIdx].name.toLowerCase().includes("btv");
-    const proxiedStreamUrl = isBtv ? rawUrl : (CORS_PROXY + encodeURIComponent(rawUrl));
+    const proxiedStreamUrl = isBtv ? rawUrl : rawUrl; // বর্তমানে সরাসরি প্লে করার চেষ্টা করছি, প্রোটেক্টেড হলে প্রক্সি অ্যাপ্লাই হবে
 
     if (Hls.isSupported()) {
         hlsInstance = new Hls({
-            // Ultra Optimization Variables for Slow/Bad connection stability
             enableWorker: true,
-            maxBufferLength: 60,          // 60 সেকেন্ডের বাফার আগাম রেন্ডার হবে যাতে কাপাকাপি না করে
+            maxBufferLength: 60,          // ৬০ সেকেন্ডের বাফার অগ্রিম রেন্ডার
             maxMaxBufferLength: 120,
             maxBufferSize: 60 * 1000 * 1000, 
-            liveSyncDurationCount: 4,      // delay standard maintainer
+            liveSyncDurationCount: 4,     
             liveMaxLatencyDurationCount: 10,
             appendErrorMaxRetry: 5,
             liveDurationInfinity: true,
-            lowLatencyMode: false          // Low Network এ স্ট্যাবিলিটি বাড়ানোর জন্য ফলস রাখা হয়েছে
+            lowLatencyMode: false          
         });
         
         hlsInstance.loadSource(proxiedStreamUrl);
@@ -424,12 +455,11 @@ function loadServerStream(srvIdx) {
         
         hlsInstance.on(Hls.Events.MANIFEST_PARSED, () => {
             video.play().catch(() => {
-                video.muted = true; // Block code autoplay standard browser
+                video.muted = true; 
                 video.play();
             });
         });
         
-        // HLS Auto Error recovery pipeline logic for network loss dropouts
         hlsInstance.on(Hls.Events.ERROR, function (event, data) {
             if (data.fatal) {
                 switch (data.type) {
@@ -442,7 +472,7 @@ function loadServerStream(srvIdx) {
                         hlsInstance.recoverMediaError();
                         break;
                     default:
-                        showBufferingState(true, "সার্ভার রেসপন্স করছে না। পুনরায় লোড করুন।");
+                        showBufferingState(true, "সার্ভার রেসপন্স করছে না। বিকল্প ট্রাই করুন।");
                         destroyPlayerInstance();
                         break;
                 }
@@ -450,7 +480,6 @@ function loadServerStream(srvIdx) {
         });
         
     } else if (video.canPlayType('application/vnd.apple.mpegurl')) {
-        // Native support systems for Apple devices iOS/Safari
         video.src = proxiedStreamUrl;
         video.addEventListener('loadedmetadata', () => {
             video.play();
@@ -460,7 +489,6 @@ function loadServerStream(srvIdx) {
     }
 }
 
-// Video Tag Active Handlers
 video.onwaiting = () => showBufferingState(true, "বাফারিং হচ্ছে... একটু অপেক্ষা করুন");
 video.onplaying = () => showBufferingState(false);
 video.onstalled = () => showBufferingState(true, "দুর্বল ইন্টারনেটের কারণে স্ট্রিম স্লো হচ্ছে...");
@@ -479,7 +507,7 @@ function triggerPlayerUIHUD() {
     clearTimeout(uiTimer);
     uiTimer = setTimeout(() => {
         if(!video.paused) player.classList.remove('show-ui');
-    }, 4500); // UI auto hides after 4.5 seconds if video runs fine
+    }, 4500);
 }
 
 function closePlayer() {
@@ -501,13 +529,12 @@ function destroyPlayerInstance() {
     }
 }
 
-// Toast Notifier
 function toast(msg) {
     const t = $('toast');
     t.innerText = msg;
     t.classList.add('on');
     clearTimeout(t.timer);
-    t.timer = setTimeout(() => t.classList.remove('on'), 3000);
+    t.timer = setTimeout(() => t.classList.remove('on'), 4000);
 }
 </script>
 </body>
