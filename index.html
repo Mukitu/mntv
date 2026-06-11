@@ -152,15 +152,31 @@ body::after{content:'';position:fixed;inset:0;
 
 
            <!-- ⚡ এখান থেকে কপি শুরু করুন -->
-<div style="background: linear-gradient(135deg, #0a0f1e 0%, #0a0510 100%); border-bottom: 2px solid var(--accent); color: white; font-size: 12px; font-weight: 500; padding: 12px 16px; text-align: center; letter-spacing: 0.3px; backdrop-filter: blur(4px); z-index: 999; position: relative; box-shadow: 0 4px 20px rgba(0,0,0,0.3);">
-    <div style="display: flex; flex-wrap: wrap; justify-content: center; align-items: center; gap: 12px; row-gap: 8px;">
-        <span style="background: var(--accent); padding: 4px 12px; border-radius: 40px; font-size: 11px; font-weight: 700;">🔴 গুরুত্বপূর্ণ নোটিশ</span>
-        <span>⚠️ <strong style="color: #f97316;">সময় টিভি</strong> বর্তমানে <strong style="color: #ef4444;">অফ</strong> আছে</span>
-        <span>✅ <strong style="color: #22c55e;">টি স্পোর্টস</strong> বাদে <strong>বাকি সব চ্যানেল</strong> লাইভ ও সচল</span>
-        <span>🏆 ফিফা বিশ্বকাপ ২০২৬ দেখুন <strong style="color: var(--accent2);">MN TV</strong>-তে ফ্রিতে!</span>
+<div style="background: linear-gradient(135deg, #0a0f1e 0%, #0a0510 100%); border-bottom: 2px solid var(--accent); color: white; font-size: 13px; font-weight: 500; padding: 10px 0; backdrop-filter: blur(4px); z-index: 999; position: relative; box-shadow: 0 4px 20px rgba(0,0,0,0.3); overflow: hidden; white-space: nowrap;">
+    <div style="display: inline-block; animation: scrollNotice 20s linear infinite; padding-left: 100%;">
+        <span style="background: #dc2626; padding: 4px 12px; border-radius: 40px; font-size: 11px; font-weight: 700; margin-right: 30px; box-shadow: 0 0 8px rgba(220,38,38,0.5);">🚨 জরুরি নোটিশ</span>
+        <span style="margin-right: 35px;">⛔ <strong style="color: #f87171;">সময় টিভি</strong> <span style="background: #991b1b; padding: 2px 8px; border-radius: 20px; font-size: 10px; margin-left: 5px;">OFF 🔴</span></span>
+        <span style="margin-right: 35px;">⛔ <strong style="color: #f87171;">টি স্পোর্টস</strong> <span style="background: #991b1b; padding: 2px 8px; border-radius: 20px; font-size: 10px; margin-left: 5px;">OFF 🔴</span></span>
+        <span style="margin-right: 35px;">✅ <strong style="color: #4ade80;">বাকি সব চ্যানেল সম্পূর্ণ সচল</strong> 👍</span>
+        <span style="margin-right: 35px;">🏆 ফিফা বিশ্বকাপ ২০২৬ দেখুন <strong style="color: #fbbf24;">MN TV</strong>-তে ফ্রিতে!</span>
+        <span>🔥 ২৪/৭ লাইভ স্ট্রিমিং | সম্পূর্ণ ফ্রি | কোন রেজিস্ট্রেশন নেই</span>
     </div>
 </div>
+
+<style>
+@keyframes scrollNotice {
+    0% {
+        transform: translateX(0);
+    }
+    100% {
+        transform: translateX(-100%);
+    }
+}
+</style>
 <!-- ⚡ কপি শেষ -->
+
+
+  
   
 
 
